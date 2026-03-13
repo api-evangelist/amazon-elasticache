@@ -1,0 +1,378 @@
+openapi: 3.1.0
+info:
+  title: Amazon ElastiCache API
+  description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.
+  version: '2015-02-02'
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://aws.amazon.com/elasticache/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://elasticache.amazonaws.com
+    description: Amazon ElastiCache API endpoint
+paths:
+  /:
+    post:
+      operationId: createCacheCluster
+      summary: Create Cache Cluster
+      description: Creates a cache cluster. All nodes in the cache cluster run the same protocol-compliant cache engine software, either Memcached or Redis.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - CreateCacheCluster
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2015-02-02'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - CacheClusterId
+              properties:
+                CacheClusterId:
+                  type: string
+                  description: The node group (shard) identifier.
+                Engine:
+                  type: string
+                  enum:
+                    - memcached
+                    - redis
+                  description: The name of the cache engine to be used for this cluster.
+                EngineVersion:
+                  type: string
+                  description: The version number of the cache engine to be used for this cluster.
+                CacheNodeType:
+                  type: string
+                  description: The compute and memory capacity of the nodes in the node group.
+                NumCacheNodes:
+                  type: integer
+                  description: The initial number of cache nodes that the cluster has.
+                CacheSubnetGroupName:
+                  type: string
+                  description: The name of the subnet group to be used for the cluster.
+                CacheParameterGroupName:
+                  type: string
+                  description: The name of the parameter group to associate with this cluster.
+                SecurityGroupIds:
+                  type: array
+                  items:
+                    type: string
+                  description: One or more VPC security groups associated with the cluster.
+                PreferredAvailabilityZone:
+                  type: string
+                  description: The EC2 Availability Zone in which the cluster is created.
+                Port:
+                  type: integer
+                  description: The port number on which each of the cache nodes accepts connections.
+                AutoMinorVersionUpgrade:
+                  type: boolean
+                  description: If true, minor engine upgrades will be applied automatically during maintenance windows.
+                SnapshotRetentionLimit:
+                  type: integer
+                  description: The number of days for which ElastiCache retains automatic snapshots.
+      responses:
+        '200':
+          description: Successful response with the created cache cluster details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateCacheClusterResult'
+        '400':
+          description: Bad request error.
+    get:
+      operationId: describeCacheClusters
+      summary: Describe Cache Clusters
+      description: Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - DescribeCacheClusters
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2015-02-02'
+        - name: CacheClusterId
+          in: query
+          schema:
+            type: string
+          description: The user-supplied cluster identifier.
+        - name: ShowCacheNodeInfo
+          in: query
+          schema:
+            type: boolean
+          description: If true, lists individual cache node information.
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+          description: The maximum number of records to include in the response.
+        - name: Marker
+          in: query
+          schema:
+            type: string
+          description: An optional marker returned from a prior request.
+      responses:
+        '200':
+          description: Successful response with cache cluster details.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DescribeCacheClustersResult'
+        '404':
+          description: Cache cluster not found.
+  /#DeleteCacheCluster:
+    post:
+      operationId: deleteCacheCluster
+      summary: Delete Cache Cluster
+      description: Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - DeleteCacheCluster
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2015-02-02'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - CacheClusterId
+              properties:
+                CacheClusterId:
+                  type: string
+                  description: The cluster identifier for the cluster to be deleted.
+                FinalSnapshotIdentifier:
+                  type: string
+                  description: The user-supplied name of a final cluster snapshot.
+      responses:
+        '200':
+          description: Successful response with the deleted cache cluster details.
+        '404':
+          description: Cache cluster not found.
+  /#CreateReplicationGroup:
+    post:
+      operationId: createReplicationGroup
+      summary: Create Replication Group
+      description: Creates a Redis replication group with cluster mode disabled or cluster mode enabled.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - CreateReplicationGroup
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2015-02-02'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - ReplicationGroupId
+                - ReplicationGroupDescription
+              properties:
+                ReplicationGroupId:
+                  type: string
+                  description: The replication group identifier.
+                ReplicationGroupDescription:
+                  type: string
+                  description: A user-created description for the replication group.
+                PrimaryClusterId:
+                  type: string
+                  description: The identifier of the cluster that serves as the primary for this replication group.
+                AutomaticFailoverEnabled:
+                  type: boolean
+                  description: Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.
+                NumCacheClusters:
+                  type: integer
+                  description: The number of clusters this replication group initially has.
+                CacheNodeType:
+                  type: string
+                  description: The compute and memory capacity of the nodes in the node group.
+                Engine:
+                  type: string
+                  description: The name of the cache engine to be used for the clusters in this replication group.
+                  default: redis
+                EngineVersion:
+                  type: string
+                  description: The version number of the cache engine.
+                CacheSubnetGroupName:
+                  type: string
+                  description: The name of the cache subnet group.
+                SecurityGroupIds:
+                  type: array
+                  items:
+                    type: string
+                  description: One or more Amazon VPC security groups associated with this replication group.
+      responses:
+        '200':
+          description: Successful response with the created replication group details.
+        '400':
+          description: Bad request error.
+  /#DescribeReplicationGroups:
+    get:
+      operationId: describeReplicationGroups
+      summary: Describe Replication Groups
+      description: Returns information about a particular replication group or all replication groups.
+      parameters:
+        - name: Action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - DescribeReplicationGroups
+        - name: Version
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '2015-02-02'
+        - name: ReplicationGroupId
+          in: query
+          schema:
+            type: string
+          description: The identifier for the replication group to describe.
+        - name: MaxRecords
+          in: query
+          schema:
+            type: integer
+          description: The maximum number of records to include in the response.
+        - name: Marker
+          in: query
+          schema:
+            type: string
+          description: An optional marker returned from a prior request.
+      responses:
+        '200':
+          description: Successful response with replication group details.
+        '404':
+          description: Replication group not found.
+components:
+  schemas:
+    CreateCacheClusterResult:
+      type: object
+      properties:
+        CacheCluster:
+          $ref: '#/components/schemas/CacheCluster'
+    DescribeCacheClustersResult:
+      type: object
+      properties:
+        CacheClusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/CacheCluster'
+        Marker:
+          type: string
+    CacheCluster:
+      type: object
+      properties:
+        CacheClusterId:
+          type: string
+          description: The user-supplied identifier of the cluster.
+        CacheClusterStatus:
+          type: string
+          description: The current state of this cluster.
+        Engine:
+          type: string
+          description: The name of the cache engine used for this cluster.
+        EngineVersion:
+          type: string
+          description: The version of the cache engine that is used in this cluster.
+        CacheNodeType:
+          type: string
+          description: The name of the compute and memory capacity node type for the cluster.
+        NumCacheNodes:
+          type: integer
+          description: The number of cache nodes in the cluster.
+        PreferredAvailabilityZone:
+          type: string
+          description: The name of the Availability Zone in which the cluster is located.
+        CacheClusterCreateTime:
+          type: string
+          format: date-time
+          description: The date and time when the cluster was created.
+        PreferredMaintenanceWindow:
+          type: string
+          description: Specifies the weekly time range during which maintenance on the cluster is performed.
+        CacheSubnetGroupName:
+          type: string
+          description: The name of the cache subnet group associated with the cluster.
+        CacheNodes:
+          type: array
+          items:
+            type: object
+            properties:
+              CacheNodeId:
+                type: string
+              CacheNodeStatus:
+                type: string
+              Endpoint:
+                type: object
+                properties:
+                  Address:
+                    type: string
+                  Port:
+                    type: integer
+          description: A list of cache nodes that are members of the cluster.
+        AutoMinorVersionUpgrade:
+          type: boolean
+          description: If true, then minor version patches are applied automatically.
+        SecurityGroups:
+          type: array
+          items:
+            type: object
+            properties:
+              SecurityGroupId:
+                type: string
+              Status:
+                type: string
+          description: A list of VPC Security Groups associated with the cluster.
+        ReplicationGroupId:
+          type: string
+          description: The replication group to which this cluster belongs.
+        SnapshotRetentionLimit:
+          type: integer
+          description: The number of days for which ElastiCache retains automatic cluster snapshots.
+        ARN:
+          type: string
+          description: The ARN of the cache cluster.
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication.

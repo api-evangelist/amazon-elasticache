@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.apis.io/schemas/amazon-elasticache-cachecluster.json",
+  "title": "Amazon ElastiCache CacheCluster",
+  "description": "Schema representing an Amazon ElastiCache cache cluster, which is a collection of cache nodes running Redis or Memcached cache engine software.",
+  "type": "object",
+  "required": [
+    "CacheClusterId"
+  ],
+  "properties": {
+    "CacheClusterId": {
+      "type": "string",
+      "description": "The user-supplied identifier of the cluster. This identifier is a unique key that identifies a cluster.",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$"
+    },
+    "ARN": {
+      "type": "string",
+      "description": "The ARN (Amazon Resource Name) of the cache cluster.",
+      "pattern": "^arn:aws[a-zA-Z-]*:elasticache:[a-z0-9-]+:[0-9]{12}:cluster:.+$"
+    },
+    "CacheClusterStatus": {
+      "type": "string",
+      "description": "The current state of this cluster.",
+      "enum": [
+        "available",
+        "creating",
+        "deleted",
+        "deleting",
+        "incompatible-network",
+        "modifying",
+        "rebooting cluster nodes",
+        "restore-failed",
+        "snapshotting"
+      ]
+    },
+    "Engine": {
+      "type": "string",
+      "description": "The name of the cache engine used in this cluster.",
+      "enum": [
+        "memcached",
+        "redis"
+      ]
+    },
+    "EngineVersion": {
+      "type": "string",
+      "description": "The version of the cache engine that is used in this cluster."
+    },
+    "CacheNodeType": {
+      "type": "string",
+      "description": "The name of the compute and memory capacity node type for the cluster.",
+      "pattern": "^cache\\.[a-z0-9]+\\.[a-z0-9]+$"
+    },
+    "NumCacheNodes": {
+      "type": "integer",
+      "description": "The number of cache nodes in the cluster.",
+      "minimum": 1
+    },
+    "PreferredAvailabilityZone": {
+      "type": "string",
+      "description": "The name of the Availability Zone in which the cluster is located or \"Multiple\" if the cache nodes are located in different Availability Zones."
+    },
+    "CacheClusterCreateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the cluster was created."
+    },
+    "PreferredMaintenanceWindow": {
+      "type": "string",
+      "description": "Specifies the weekly time range during which maintenance on the cluster is performed."
+    },
+    "CacheSubnetGroupName": {
+      "type": "string",
+      "description": "The name of the cache subnet group associated with the cluster."
+    },
+    "CacheParameterGroup": {
+      "type": "object",
+      "description": "Status of the cache parameter group.",
+      "properties": {
+        "CacheParameterGroupName": {
+          "type": "string",
+          "description": "The name of the cache parameter group."
+        },
+        "ParameterApplyStatus": {
+          "type": "string",
+          "description": "The status of parameter updates."
+        },
+        "CacheNodeIdsToReboot": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of the cache node IDs which need to be rebooted."
+        }
+      }
+    },
+    "CacheNodes": {
+      "type": "array",
+      "description": "A list of cache nodes that are members of the cluster.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "CacheNodeId": {
+            "type": "string",
+            "description": "The cache node identifier."
+          },
+          "CacheNodeStatus": {
+            "type": "string",
+            "description": "The current state of this cache node."
+          },
+          "CacheNodeCreateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the cache node was created."
+          },
+          "Endpoint": {
+            "type": "object",
+            "properties": {
+              "Address": {
+                "type": "string",
+                "description": "The DNS hostname of the cache node."
+              },
+              "Port": {
+                "type": "integer",
+                "description": "The port number that the cache engine is listening on."
+              }
+            }
+          },
+          "ParameterGroupStatus": {
+            "type": "string",
+            "description": "The status of the parameter group applied to this cache node."
+          },
+          "CustomerAvailabilityZone": {
+            "type": "string",
+            "description": "The Availability Zone where this node was created and now resides."
+          }
+        }
+      }
+    },
+    "ConfigurationEndpoint": {
+      "type": "object",
+      "description": "Represents a Memcached cluster endpoint which can be used by an application to connect to any node in the cluster.",
+      "properties": {
+        "Address": {
+          "type": "string",
+          "description": "The DNS hostname of the cache node."
+        },
+        "Port": {
+          "type": "integer",
+          "description": "The port number that the cache engine is listening on."
+        }
+      }
+    },
+    "SecurityGroups": {
+      "type": "array",
+      "description": "A list of VPC Security Groups associated with the cluster.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "SecurityGroupId": {
+            "type": "string",
+            "description": "The identifier of the cache security group."
+          },
+          "Status": {
+            "type": "string",
+            "description": "The status of the cache security group membership."
+          }
+        }
+      }
+    },
+    "ReplicationGroupId": {
+      "type": ["string", "null"],
+      "description": "The replication group to which this cluster belongs."
+    },
+    "SnapshotRetentionLimit": {
+      "type": "integer",
+      "description": "The number of days for which ElastiCache retains automatic cluster snapshots.",
+      "minimum": 0,
+      "maximum": 35
+    },
+    "SnapshotWindow": {
+      "type": "string",
+      "description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your cluster."
+    },
+    "AutoMinorVersionUpgrade": {
+      "type": "boolean",
+      "description": "If true, then minor version patches are applied automatically.",
+      "default": true
+    },
+    "Port": {
+      "type": "integer",
+      "description": "The port number on which each of the cache nodes accepts connections."
+    },
+    "NotificationConfiguration": {
+      "type": "object",
+      "description": "Describes a notification topic and its status.",
+      "properties": {
+        "TopicArn": {
+          "type": "string",
+          "description": "The Amazon Resource Name (ARN) that identifies the topic."
+        },
+        "TopicStatus": {
+          "type": "string",
+          "description": "The current state of the topic."
+        }
+      }
+    },
+    "TransitEncryptionEnabled": {
+      "type": "boolean",
+      "description": "A flag that enables in-transit encryption when set to true.",
+      "default": false
+    },
+    "AtRestEncryptionEnabled": {
+      "type": "boolean",
+      "description": "A flag that enables encryption at rest when set to true.",
+      "default": false
+    }
+  }
+}

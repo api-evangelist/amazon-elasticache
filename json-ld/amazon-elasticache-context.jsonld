@@ -1,0 +1,127 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aws": "https://aws.amazon.com/elasticache/",
+    "elasticache": "https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/",
+    "CacheCluster": {
+      "@id": "aws:CacheCluster",
+      "@type": "SoftwareApplication",
+      "@context": {
+        "CacheClusterId": {
+          "@id": "aws:CacheClusterId",
+          "@type": "xsd:string"
+        },
+        "ARN": {
+          "@id": "aws:ARN",
+          "@type": "@id"
+        },
+        "CacheClusterStatus": {
+          "@id": "schema:status",
+          "@type": "xsd:string"
+        },
+        "Engine": {
+          "@id": "aws:Engine",
+          "@type": "xsd:string"
+        },
+        "EngineVersion": {
+          "@id": "schema:softwareVersion",
+          "@type": "xsd:string"
+        },
+        "CacheNodeType": {
+          "@id": "aws:CacheNodeType",
+          "@type": "xsd:string"
+        },
+        "NumCacheNodes": {
+          "@id": "aws:NumCacheNodes",
+          "@type": "xsd:integer"
+        },
+        "PreferredAvailabilityZone": {
+          "@id": "aws:PreferredAvailabilityZone",
+          "@type": "xsd:string"
+        },
+        "CacheClusterCreateTime": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "CacheSubnetGroupName": {
+          "@id": "aws:CacheSubnetGroupName",
+          "@type": "xsd:string"
+        },
+        "Port": {
+          "@id": "aws:Port",
+          "@type": "xsd:integer"
+        },
+        "TransitEncryptionEnabled": {
+          "@id": "aws:TransitEncryptionEnabled",
+          "@type": "xsd:boolean"
+        },
+        "AtRestEncryptionEnabled": {
+          "@id": "aws:AtRestEncryptionEnabled",
+          "@type": "xsd:boolean"
+        },
+        "SnapshotRetentionLimit": {
+          "@id": "aws:SnapshotRetentionLimit",
+          "@type": "xsd:integer"
+        },
+        "AutoMinorVersionUpgrade": {
+          "@id": "aws:AutoMinorVersionUpgrade",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+    "ReplicationGroup": {
+      "@id": "aws:ReplicationGroup",
+      "@type": "SoftwareApplication",
+      "@context": {
+        "ReplicationGroupId": {
+          "@id": "aws:ReplicationGroupId",
+          "@type": "xsd:string"
+        },
+        "Description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "Status": {
+          "@id": "schema:status",
+          "@type": "xsd:string"
+        },
+        "AutomaticFailover": {
+          "@id": "aws:AutomaticFailover",
+          "@type": "xsd:string"
+        },
+        "MemberClusters": {
+          "@id": "aws:MemberClusters",
+          "@type": "@id"
+        }
+      }
+    },
+    "CacheNode": {
+      "@id": "aws:CacheNode",
+      "@type": "Thing",
+      "@context": {
+        "CacheNodeId": {
+          "@id": "aws:CacheNodeId",
+          "@type": "xsd:string"
+        },
+        "CacheNodeStatus": {
+          "@id": "schema:status",
+          "@type": "xsd:string"
+        },
+        "CacheNodeCreateTime": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "Endpoint": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "CustomerAvailabilityZone": {
+          "@id": "aws:CustomerAvailabilityZone",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}
