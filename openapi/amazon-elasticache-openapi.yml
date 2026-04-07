@@ -17,7 +17,7 @@ paths:
   /:
     post:
       operationId: createCacheCluster
-      summary: Create Cache Cluster
+      summary: Amazon ElastiCache Create Cache Cluster
       description: Creates a cache cluster. All nodes in the cache cluster run the same protocol-compliant cache engine software, either Memcached or Redis.
       parameters:
         - name: Action
@@ -93,7 +93,7 @@ paths:
           description: Bad request error.
     get:
       operationId: describeCacheClusters
-      summary: Describe Cache Clusters
+      summary: Amazon ElastiCache Describe Cache Clusters
       description: Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied.
       parameters:
         - name: Action
@@ -141,7 +141,7 @@ paths:
   /#DeleteCacheCluster:
     post:
       operationId: deleteCacheCluster
-      summary: Delete Cache Cluster
+      summary: Amazon ElastiCache Delete Cache Cluster
       description: Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly.
       parameters:
         - name: Action
@@ -179,7 +179,7 @@ paths:
   /#CreateReplicationGroup:
     post:
       operationId: createReplicationGroup
-      summary: Create Replication Group
+      summary: Amazon ElastiCache Create Replication Group
       description: Creates a Redis replication group with cluster mode disabled or cluster mode enabled.
       parameters:
         - name: Action
@@ -245,7 +245,7 @@ paths:
   /#DescribeReplicationGroups:
     get:
       operationId: describeReplicationGroups
-      summary: Describe Replication Groups
+      summary: Amazon ElastiCache Describe Replication Groups
       description: Returns information about a particular replication group or all replication groups.
       parameters:
         - name: Action
