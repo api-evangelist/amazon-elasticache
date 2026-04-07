@@ -176,6 +176,8 @@ paths:
           description: Successful response with the deleted cache cluster details.
         '404':
           description: Cache cluster not found.
+      tags:
+        - '#DeleteCacheCluster'
   /#CreateReplicationGroup:
     post:
       operationId: createReplicationGroup
@@ -242,6 +244,8 @@ paths:
           description: Successful response with the created replication group details.
         '400':
           description: Bad request error.
+      tags:
+        - '#CreateReplicationGroup'
   /#DescribeReplicationGroups:
     get:
       operationId: describeReplicationGroups
@@ -281,6 +285,8 @@ paths:
           description: Successful response with replication group details.
         '404':
           description: Replication group not found.
+      tags:
+        - '#DescribeReplicationGroups'
 components:
   schemas:
     CreateCacheClusterResult:
@@ -376,3 +382,7 @@ components:
       name: Authorization
       in: header
       description: AWS Signature Version 4 authentication.
+tags:
+  - name: '#CreateReplicationGroup'
+  - name: '#DeleteCacheCluster'
+  - name: '#DescribeReplicationGroups'

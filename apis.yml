@@ -5,14 +5,14 @@ url: https://aws.amazon.com/elasticache/
 created: '2024-01-15'
 modified: '2026-03-16'
 tags:
-  - AWS
   - Amazon Web Services
-  - ElastiCache
-  - Redis
-  - Memcached
+  - AWS
   - Caching
-  - In-Memory
   - Database
+  - ElastiCache
+  - In-Memory
+  - Memcached
+  - Redis
 apis:
   - name: Amazon ElastiCache API
     description: API for managing Amazon ElastiCache clusters, replication groups, and related resources.
