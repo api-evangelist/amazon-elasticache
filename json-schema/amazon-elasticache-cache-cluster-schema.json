@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-elasticache/refs/heads/main/json-schema/amazon-elasticache-cache-cluster-schema.json",
+  "title": "CacheCluster",
+  "description": "CacheCluster schema from Amazon ElastiCache API",
+  "type": "object",
+  "properties": {
+    "CacheClusterId": {
+      "type": "string",
+      "description": "The user-supplied identifier of the cluster."
+    },
+    "CacheClusterStatus": {
+      "type": "string",
+      "description": "The current state of this cluster."
+    },
+    "Engine": {
+      "type": "string",
+      "description": "The name of the cache engine used for this cluster."
+    },
+    "EngineVersion": {
+      "type": "string",
+      "description": "The version of the cache engine that is used in this cluster."
+    },
+    "CacheNodeType": {
+      "type": "string",
+      "description": "The name of the compute and memory capacity node type for the cluster."
+    },
+    "NumCacheNodes": {
+      "type": "integer",
+      "description": "The number of cache nodes in the cluster."
+    },
+    "PreferredAvailabilityZone": {
+      "type": "string",
+      "description": "The name of the Availability Zone in which the cluster is located."
+    },
+    "CacheClusterCreateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the cluster was created."
+    },
+    "PreferredMaintenanceWindow": {
+      "type": "string",
+      "description": "Specifies the weekly time range during which maintenance on the cluster is performed."
+    },
+    "CacheSubnetGroupName": {
+      "type": "string",
+      "description": "The name of the cache subnet group associated with the cluster."
+    },
+    "CacheNodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "CacheNodeId": {
+            "type": "string"
+          },
+          "CacheNodeStatus": {
+            "type": "string"
+          },
+          "Endpoint": {
+            "type": "object",
+            "properties": {
+              "Address": {
+                "type": "string"
+              },
+              "Port": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "description": "A list of cache nodes that are members of the cluster."
+    },
+    "AutoMinorVersionUpgrade": {
+      "type": "boolean",
+      "description": "If true, then minor version patches are applied automatically."
+    },
+    "SecurityGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "SecurityGroupId": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "A list of VPC Security Groups associated with the cluster."
+    },
+    "ReplicationGroupId": {
+      "type": "string",
+      "description": "The replication group to which this cluster belongs."
+    },
+    "SnapshotRetentionLimit": {
+      "type": "integer",
+      "description": "The number of days for which ElastiCache retains automatic cluster snapshots."
+    },
+    "ARN": {
+      "type": "string",
+      "description": "The ARN of the cache cluster."
+    }
+  }
+}

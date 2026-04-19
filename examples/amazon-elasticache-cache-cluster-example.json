@@ -1,0 +1,12 @@
+{
+  "CacheClusterId": "example-value",
+  "CacheClusterStatus": "example-value",
+  "Engine": "example-value",
+  "EngineVersion": "example-value",
+  "CacheNodeType": "example-value",
+  "NumCacheNodes": 93,
+  "PreferredAvailabilityZone": "example-value",
+  "CacheClusterCreateTime": "2025-01-15T00:00:00Z",
+  "PreferredMaintenanceWindow": "example-value",
+  "CacheSubnetGroupName": "example-value"
+}

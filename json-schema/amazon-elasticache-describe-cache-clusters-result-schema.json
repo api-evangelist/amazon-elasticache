@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-elasticache/refs/heads/main/json-schema/amazon-elasticache-describe-cache-clusters-result-schema.json",
+  "title": "DescribeCacheClustersResult",
+  "description": "DescribeCacheClustersResult schema from Amazon ElastiCache API",
+  "type": "object",
+  "properties": {
+    "CacheClusters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CacheCluster"
+      }
+    },
+    "Marker": {
+      "type": "string"
+    }
+  }
+}

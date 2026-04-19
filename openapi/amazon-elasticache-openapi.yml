@@ -11,8 +11,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://elasticache.amazonaws.com
-    description: Amazon ElastiCache API endpoint
+- url: https://elasticache.amazonaws.com
+  description: Amazon ElastiCache API endpoint
 paths:
   /:
     post:
@@ -20,26 +20,26 @@ paths:
       summary: Amazon ElastiCache Create Cache Cluster
       description: Creates a cache cluster. All nodes in the cache cluster run the same protocol-compliant cache engine software, either Memcached or Redis.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateCacheCluster
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2015-02-02'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateCacheCluster
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2015-02-02'
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
               type: object
               required:
-                - CacheClusterId
+              - CacheClusterId
               properties:
                 CacheClusterId:
                   type: string
@@ -47,8 +47,8 @@ paths:
                 Engine:
                   type: string
                   enum:
-                    - memcached
-                    - redis
+                  - memcached
+                  - redis
                   description: The name of the cache engine to be used for this cluster.
                 EngineVersion:
                   type: string
@@ -82,6 +82,16 @@ paths:
                 SnapshotRetentionLimit:
                   type: integer
                   description: The number of days for which ElastiCache retains automatic snapshots.
+            examples:
+              createCacheClusterRequestExample:
+                summary: Default createCacheCluster request
+                x-microcks-default: true
+                value:
+                  CacheClusterId: example-id-12345
+                  Engine: memcached
+                  EngineVersion: '2025-01-01'
+                  CacheNodeType: example
+                  NumCacheNodes: 1
       responses:
         '200':
           description: Successful response with the created cache cluster details.
@@ -89,46 +99,60 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/CreateCacheClusterResult'
+              examples:
+                createCacheCluster200Example:
+                  summary: Default createCacheCluster 200 response
+                  x-microcks-default: true
+                  value:
+                    CacheCluster:
+                      CacheClusterId: example-id-12345
+                      CacheClusterStatus: Active
+                      Engine: example
+                      EngineVersion: '2025-01-01'
+                      CacheNodeType: example
         '400':
           description: Bad request error.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
       operationId: describeCacheClusters
       summary: Amazon ElastiCache Describe Cache Clusters
       description: Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeCacheClusters
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2015-02-02'
-        - name: CacheClusterId
-          in: query
-          schema:
-            type: string
-          description: The user-supplied cluster identifier.
-        - name: ShowCacheNodeInfo
-          in: query
-          schema:
-            type: boolean
-          description: If true, lists individual cache node information.
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-          description: The maximum number of records to include in the response.
-        - name: Marker
-          in: query
-          schema:
-            type: string
-          description: An optional marker returned from a prior request.
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeCacheClusters
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2015-02-02'
+      - name: CacheClusterId
+        in: query
+        schema:
+          type: string
+        description: The user-supplied cluster identifier.
+      - name: ShowCacheNodeInfo
+        in: query
+        schema:
+          type: boolean
+        description: If true, lists individual cache node information.
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+        description: The maximum number of records to include in the response.
+      - name: Marker
+        in: query
+        schema:
+          type: string
+        description: An optional marker returned from a prior request.
       responses:
         '200':
           description: Successful response with cache cluster details.
@@ -136,34 +160,44 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/DescribeCacheClustersResult'
+              examples:
+                describeCacheClusters200Example:
+                  summary: Default describeCacheClusters 200 response
+                  x-microcks-default: true
+                  value:
+                    CacheClusters: []
+                    Marker: example
         '404':
           description: Cache cluster not found.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /#DeleteCacheCluster:
     post:
       operationId: deleteCacheCluster
       summary: Amazon ElastiCache Delete Cache Cluster
       description: Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DeleteCacheCluster
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2015-02-02'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DeleteCacheCluster
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2015-02-02'
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
               type: object
               required:
-                - CacheClusterId
+              - CacheClusterId
               properties:
                 CacheClusterId:
                   type: string
@@ -171,40 +205,50 @@ paths:
                 FinalSnapshotIdentifier:
                   type: string
                   description: The user-supplied name of a final cluster snapshot.
+            examples:
+              deleteCacheClusterRequestExample:
+                summary: Default deleteCacheCluster request
+                x-microcks-default: true
+                value:
+                  CacheClusterId: example-id-12345
+                  FinalSnapshotIdentifier: example
       responses:
         '200':
           description: Successful response with the deleted cache cluster details.
         '404':
           description: Cache cluster not found.
       tags:
-        - '#DeleteCacheCluster'
+      - '#DeleteCacheCluster'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /#CreateReplicationGroup:
     post:
       operationId: createReplicationGroup
       summary: Amazon ElastiCache Create Replication Group
       description: Creates a Redis replication group with cluster mode disabled or cluster mode enabled.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - CreateReplicationGroup
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2015-02-02'
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateReplicationGroup
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2015-02-02'
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
               type: object
               required:
-                - ReplicationGroupId
-                - ReplicationGroupDescription
+              - ReplicationGroupId
+              - ReplicationGroupDescription
               properties:
                 ReplicationGroupId:
                   type: string
@@ -239,54 +283,70 @@ paths:
                   items:
                     type: string
                   description: One or more Amazon VPC security groups associated with this replication group.
+            examples:
+              createReplicationGroupRequestExample:
+                summary: Default createReplicationGroup request
+                x-microcks-default: true
+                value:
+                  ReplicationGroupId: example-id-12345
+                  ReplicationGroupDescription: Example description
+                  PrimaryClusterId: example-id-12345
+                  AutomaticFailoverEnabled: true
+                  NumCacheClusters: 1
       responses:
         '200':
           description: Successful response with the created replication group details.
         '400':
           description: Bad request error.
       tags:
-        - '#CreateReplicationGroup'
+      - '#CreateReplicationGroup'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /#DescribeReplicationGroups:
     get:
       operationId: describeReplicationGroups
       summary: Amazon ElastiCache Describe Replication Groups
       description: Returns information about a particular replication group or all replication groups.
       parameters:
-        - name: Action
-          in: query
-          required: true
-          schema:
-            type: string
-            enum:
-              - DescribeReplicationGroups
-        - name: Version
-          in: query
-          required: true
-          schema:
-            type: string
-            default: '2015-02-02'
-        - name: ReplicationGroupId
-          in: query
-          schema:
-            type: string
-          description: The identifier for the replication group to describe.
-        - name: MaxRecords
-          in: query
-          schema:
-            type: integer
-          description: The maximum number of records to include in the response.
-        - name: Marker
-          in: query
-          schema:
-            type: string
-          description: An optional marker returned from a prior request.
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DescribeReplicationGroups
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2015-02-02'
+      - name: ReplicationGroupId
+        in: query
+        schema:
+          type: string
+        description: The identifier for the replication group to describe.
+      - name: MaxRecords
+        in: query
+        schema:
+          type: integer
+        description: The maximum number of records to include in the response.
+      - name: Marker
+        in: query
+        schema:
+          type: string
+        description: An optional marker returned from a prior request.
       responses:
         '200':
           description: Successful response with replication group details.
         '404':
           description: Replication group not found.
       tags:
-        - '#DescribeReplicationGroups'
+      - '#DescribeReplicationGroups'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     CreateCacheClusterResult:
@@ -383,6 +443,6 @@ components:
       in: header
       description: AWS Signature Version 4 authentication.
 tags:
-  - name: '#CreateReplicationGroup'
-  - name: '#DeleteCacheCluster'
-  - name: '#DescribeReplicationGroups'
+- name: '#CreateReplicationGroup'
+- name: '#DeleteCacheCluster'
+- name: '#DescribeReplicationGroups'

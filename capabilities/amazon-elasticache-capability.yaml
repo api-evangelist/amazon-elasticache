@@ -1,0 +1,126 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Amazon ElastiCache Management
+  description: Unified capability for managing Amazon ElastiCache resources. Combines Amazon ElastiCache APIs for Backend Developer workflows in Data Caching.
+  tags:
+  - Amazon Web Services
+  - Caching
+  - Database
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AWS_API_KEY: AWS_API_KEY
+    AWS_REGION: AWS_REGION
+capability:
+  consumes:
+  - import: elasticache
+    location: ./shared/elasticache.yaml
+  exposes:
+  - type: rest
+    port: 8186
+    namespace: amazon-elasticache-workflow-api
+    description: Unified REST API for Amazon ElastiCache management.
+    resources:
+    - path: /v1/describeCacheClusters
+      name: describeCacheClusters
+      description: Amazon ElastiCache Describe Cache Clusters
+      operations:
+      - method: GET
+        name: describeCacheClusters
+        description: Amazon ElastiCache Describe Cache Clusters
+        call: api.describeCacheClusters
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/createCacheCluster
+      name: createCacheCluster
+      description: Amazon ElastiCache Create Cache Cluster
+      operations:
+      - method: POST
+        name: createCacheCluster
+        description: Amazon ElastiCache Create Cache Cluster
+        call: api.createCacheCluster
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deleteCacheCluster
+      name: deleteCacheCluster
+      description: Amazon ElastiCache Delete Cache Cluster
+      operations:
+      - method: POST
+        name: deleteCacheCluster
+        description: Amazon ElastiCache Delete Cache Cluster
+        call: api.deleteCacheCluster
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/createReplicationGroup
+      name: createReplicationGroup
+      description: Amazon ElastiCache Create Replication Group
+      operations:
+      - method: POST
+        name: createReplicationGroup
+        description: Amazon ElastiCache Create Replication Group
+        call: api.createReplicationGroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/describeReplicationGroups
+      name: describeReplicationGroups
+      description: Amazon ElastiCache Describe Replication Groups
+      operations:
+      - method: GET
+        name: describeReplicationGroups
+        description: Amazon ElastiCache Describe Replication Groups
+        call: api.describeReplicationGroups
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9196
+    namespace: amazon-elasticache-mcp
+    transport: http
+    description: MCP server for AI-assisted Amazon ElastiCache management.
+    tools:
+    - name: describeCacheClusters
+      description: Amazon ElastiCache Describe Cache Clusters
+      hints:
+        readOnly: true
+      call: api.describeCacheClusters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createCacheCluster
+      description: Amazon ElastiCache Create Cache Cluster
+      hints:
+        readOnly: false
+      call: api.createCacheCluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteCacheCluster
+      description: Amazon ElastiCache Delete Cache Cluster
+      hints:
+        readOnly: false
+      call: api.deleteCacheCluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createReplicationGroup
+      description: Amazon ElastiCache Create Replication Group
+      hints:
+        readOnly: false
+      call: api.createReplicationGroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describeReplicationGroups
+      description: Amazon ElastiCache Describe Replication Groups
+      hints:
+        readOnly: true
+      call: api.describeReplicationGroups
+      outputParameters:
+      - type: object
+        mapping: $.

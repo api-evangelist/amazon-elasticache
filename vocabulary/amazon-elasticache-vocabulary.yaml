@@ -1,0 +1,112 @@
+vocabulary: 1.0.0
+info:
+  provider: Amazon ElastiCache
+  description: Unified vocabulary and taxonomy for Amazon ElastiCache APIs and capabilities
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - name: Amazon ElastiCache API
+    namespace: elasticache
+    version: '2015-02-02'
+    baseUrl: https://elasticache.amazonaws.com
+    status: active
+  resources:
+  - name: DeleteCacheCluster
+    api: Amazon ElastiCache
+    actions:
+    - POST
+  - name: CreateReplicationGroup
+    api: Amazon ElastiCache
+    actions:
+    - POST
+  - name: DescribeReplicationGroups
+    api: Amazon ElastiCache
+    actions:
+    - GET
+  actions:
+  - verb: describe
+    httpMethod: GET
+    pattern: read
+  - verb: create
+    httpMethod: POST
+    pattern: write
+  - verb: delete
+    httpMethod: POST
+    pattern: write
+  schemas:
+    core:
+    - name: CreateCacheClusterResult
+      description: CreateCacheClusterResult object
+    - name: DescribeCacheClustersResult
+      description: DescribeCacheClustersResult object
+    - name: CacheCluster
+      description: CacheCluster object
+  parameters:
+    pagination:
+    - name: MaxResults
+      description: Maximum number of results to return
+    - name: NextToken
+      description: Pagination token for next page of results
+    identifiers:
+    - name: Id
+      description: Resource identifier
+    - name: Arn
+      description: Amazon Resource Name
+  enums:
+    states:
+    - Active
+    - Inactive
+    - Pending
+    - Terminated
+  authentication:
+  - name: aws_sigv4
+    type: apiKey
+capability:
+  workflows:
+  - name: Amazon ElastiCache Management
+    file: capabilities/amazon-elasticache-capability.yaml
+    description: Unified capability for managing Amazon ElastiCache resources. Combines Amazon ElastiCache APIs for Backend Developer workflows in Data Caching.
+    toolCount: 5
+  personas:
+  - id: developer
+    name: Application Developer
+    description: Developers building applications using Amazon ElastiCache
+  - id: operator
+    name: Cloud Operator
+    description: Operations teams managing Amazon ElastiCache infrastructure
+  domains:
+  - name: Amazon ElastiCache
+    description: In-memory caching service supporting Redis and Memcached
+  namespaces:
+  - type: consumed
+    namespace: elasticache
+  - type: rest
+    namespace: amazon-elasticache-api
+  - type: mcp
+    namespace: amazon-elasticache-mcp
+  binds:
+  - AWS_API_KEY
+  - AWS_REGION
+crossReference:
+- resource: DeleteCacheCluster
+  operations:
+  - describe
+  - create
+  - delete
+  workflows:
+  - Amazon ElastiCache Management
+- resource: CreateReplicationGroup
+  operations:
+  - describe
+  - create
+  - delete
+  workflows:
+  - Amazon ElastiCache Management
+- resource: DescribeReplicationGroups
+  operations:
+  - describe
+  - create
+  - delete
+  workflows:
+  - Amazon ElastiCache Management
