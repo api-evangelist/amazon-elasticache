@@ -1,126 +1,352 @@
-naftiko: 1.0.0-alpha1
+naftiko: 1.0.0-alpha2
 info:
-  label: Amazon ElastiCache Management
-  description: Unified capability for managing Amazon ElastiCache resources. Combines Amazon ElastiCache APIs for Backend Developer workflows in Data Caching.
+  label: Amazon ElastiCache API
+  description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving
+    the performance of web applications.
   tags:
-  - Amazon Web Services
-  - Caching
-  - Database
-  created: '2026-04-19'
-  modified: '2026-04-19'
-binds:
-- namespace: env
-  keys:
-    AWS_API_KEY: AWS_API_KEY
-    AWS_REGION: AWS_REGION
+  - Amazon
+  - Elasticache
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
 capability:
   consumes:
-  - import: elasticache
-    location: ./shared/elasticache.yaml
+  - type: http
+    namespace: amazon-elasticache
+    baseUri: https://elasticache.amazonaws.com
+    description: Amazon ElastiCache API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: Authorization
+      value: '{{AMAZON_ELASTICACHE_TOKEN}}'
+    resources:
+    - name: resource
+      path: /
+      operations:
+      - name: createcachecluster
+        method: POST
+        description: Amazon ElastiCache Create Cache Cluster
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: describecacheclusters
+        method: GET
+        description: Amazon ElastiCache Describe Cache Clusters
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: CacheClusterId
+          in: query
+          type: string
+          description: The user-supplied cluster identifier.
+        - name: ShowCacheNodeInfo
+          in: query
+          type: boolean
+          description: If true, lists individual cache node information.
+        - name: MaxRecords
+          in: query
+          type: integer
+          description: The maximum number of records to include in the response.
+        - name: Marker
+          in: query
+          type: string
+          description: An optional marker returned from a prior request.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: deletecachecluster
+      path: /#DeleteCacheCluster
+      operations:
+      - name: deletecachecluster
+        method: POST
+        description: Amazon ElastiCache Delete Cache Cluster
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: createreplicationgroup
+      path: /#CreateReplicationGroup
+      operations:
+      - name: createreplicationgroup
+        method: POST
+        description: Amazon ElastiCache Create Replication Group
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: describereplicationgroups
+      path: /#DescribeReplicationGroups
+      operations:
+      - name: describereplicationgroups
+        method: GET
+        description: Amazon ElastiCache Describe Replication Groups
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: ReplicationGroupId
+          in: query
+          type: string
+          description: The identifier for the replication group to describe.
+        - name: MaxRecords
+          in: query
+          type: integer
+          description: The maximum number of records to include in the response.
+        - name: Marker
+          in: query
+          type: string
+          description: An optional marker returned from a prior request.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
   - type: rest
-    port: 8186
-    namespace: amazon-elasticache-workflow-api
-    description: Unified REST API for Amazon ElastiCache management.
+    port: 8080
+    namespace: amazon-elasticache-rest
+    description: REST adapter for Amazon ElastiCache API.
     resources:
-    - path: /v1/describeCacheClusters
-      name: describeCacheClusters
-      description: Amazon ElastiCache Describe Cache Clusters
-      operations:
-      - method: GET
-        name: describeCacheClusters
-        description: Amazon ElastiCache Describe Cache Clusters
-        call: api.describeCacheClusters
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v1/createCacheCluster
-      name: createCacheCluster
-      description: Amazon ElastiCache Create Cache Cluster
+    - path: /
+      name: createcachecluster
       operations:
       - method: POST
-        name: createCacheCluster
+        name: createcachecluster
         description: Amazon ElastiCache Create Cache Cluster
-        call: api.createCacheCluster
+        call: amazon-elasticache.createcachecluster
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/deleteCacheCluster
-      name: deleteCacheCluster
-      description: Amazon ElastiCache Delete Cache Cluster
-      operations:
-      - method: POST
-        name: deleteCacheCluster
-        description: Amazon ElastiCache Delete Cache Cluster
-        call: api.deleteCacheCluster
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v1/createReplicationGroup
-      name: createReplicationGroup
-      description: Amazon ElastiCache Create Replication Group
-      operations:
-      - method: POST
-        name: createReplicationGroup
-        description: Amazon ElastiCache Create Replication Group
-        call: api.createReplicationGroup
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v1/describeReplicationGroups
-      name: describeReplicationGroups
-      description: Amazon ElastiCache Describe Replication Groups
+    - path: /
+      name: describecacheclusters
       operations:
       - method: GET
-        name: describeReplicationGroups
+        name: describecacheclusters
+        description: Amazon ElastiCache Describe Cache Clusters
+        call: amazon-elasticache.describecacheclusters
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /#DeleteCacheCluster
+      name: deletecachecluster
+      operations:
+      - method: POST
+        name: deletecachecluster
+        description: Amazon ElastiCache Delete Cache Cluster
+        call: amazon-elasticache.deletecachecluster
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /#CreateReplicationGroup
+      name: createreplicationgroup
+      operations:
+      - method: POST
+        name: createreplicationgroup
+        description: Amazon ElastiCache Create Replication Group
+        call: amazon-elasticache.createreplicationgroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /#DescribeReplicationGroups
+      name: describereplicationgroups
+      operations:
+      - method: GET
+        name: describereplicationgroups
         description: Amazon ElastiCache Describe Replication Groups
-        call: api.describeReplicationGroups
+        call: amazon-elasticache.describereplicationgroups
         outputParameters:
         - type: object
           mapping: $.
   - type: mcp
-    port: 9196
+    port: 9090
     namespace: amazon-elasticache-mcp
     transport: http
-    description: MCP server for AI-assisted Amazon ElastiCache management.
+    description: MCP adapter for Amazon ElastiCache API for AI agent use.
     tools:
-    - name: describeCacheClusters
-      description: Amazon ElastiCache Describe Cache Clusters
-      hints:
-        readOnly: true
-      call: api.describeCacheClusters
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: createCacheCluster
+    - name: createcachecluster
       description: Amazon ElastiCache Create Cache Cluster
       hints:
         readOnly: false
-      call: api.createCacheCluster
+        destructive: false
+        idempotent: false
+      call: amazon-elasticache.createcachecluster
+      with:
+        Action: tools.Action
+        Version: tools.Version
+      inputParameters:
+      - name: Action
+        type: string
+        description: Action
+        required: true
+      - name: Version
+        type: string
+        description: Version
+        required: true
       outputParameters:
       - type: object
         mapping: $.
-    - name: deleteCacheCluster
+    - name: describecacheclusters
+      description: Amazon ElastiCache Describe Cache Clusters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-elasticache.describecacheclusters
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        CacheClusterId: tools.CacheClusterId
+        ShowCacheNodeInfo: tools.ShowCacheNodeInfo
+        MaxRecords: tools.MaxRecords
+        Marker: tools.Marker
+      inputParameters:
+      - name: Action
+        type: string
+        description: Action
+        required: true
+      - name: Version
+        type: string
+        description: Version
+        required: true
+      - name: CacheClusterId
+        type: string
+        description: The user-supplied cluster identifier.
+      - name: ShowCacheNodeInfo
+        type: boolean
+        description: If true, lists individual cache node information.
+      - name: MaxRecords
+        type: integer
+        description: The maximum number of records to include in the response.
+      - name: Marker
+        type: string
+        description: An optional marker returned from a prior request.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletecachecluster
       description: Amazon ElastiCache Delete Cache Cluster
       hints:
         readOnly: false
-      call: api.deleteCacheCluster
+        destructive: false
+        idempotent: false
+      call: amazon-elasticache.deletecachecluster
+      with:
+        Action: tools.Action
+        Version: tools.Version
+      inputParameters:
+      - name: Action
+        type: string
+        description: Action
+        required: true
+      - name: Version
+        type: string
+        description: Version
+        required: true
       outputParameters:
       - type: object
         mapping: $.
-    - name: createReplicationGroup
+    - name: createreplicationgroup
       description: Amazon ElastiCache Create Replication Group
       hints:
         readOnly: false
-      call: api.createReplicationGroup
+        destructive: false
+        idempotent: false
+      call: amazon-elasticache.createreplicationgroup
+      with:
+        Action: tools.Action
+        Version: tools.Version
+      inputParameters:
+      - name: Action
+        type: string
+        description: Action
+        required: true
+      - name: Version
+        type: string
+        description: Version
+        required: true
       outputParameters:
       - type: object
         mapping: $.
-    - name: describeReplicationGroups
+    - name: describereplicationgroups
       description: Amazon ElastiCache Describe Replication Groups
       hints:
         readOnly: true
-      call: api.describeReplicationGroups
+        destructive: false
+        idempotent: true
+      call: amazon-elasticache.describereplicationgroups
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        ReplicationGroupId: tools.ReplicationGroupId
+        MaxRecords: tools.MaxRecords
+        Marker: tools.Marker
+      inputParameters:
+      - name: Action
+        type: string
+        description: Action
+        required: true
+      - name: Version
+        type: string
+        description: Version
+        required: true
+      - name: ReplicationGroupId
+        type: string
+        description: The identifier for the replication group to describe.
+      - name: MaxRecords
+        type: integer
+        description: The maximum number of records to include in the response.
+      - name: Marker
+        type: string
+        description: An optional marker returned from a prior request.
       outputParameters:
       - type: object
         mapping: $.
+binds:
+- namespace: env
+  keys:
+    AMAZON_ELASTICACHE_TOKEN: AMAZON_ELASTICACHE_TOKEN
