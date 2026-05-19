@@ -1,10 +1,11 @@
 name: Amazon ElastiCache
-description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached. ElastiCache makes it easy to deploy, operate, and scale popular open-source compatible 
-  in-memory data stores, improving the performance of web applications.
+description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached. ElastiCache makes
+  it easy to deploy, operate, and scale popular open-source compatible in-memory data stores, improving the performance of
+  web applications.
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 url: https://aws.amazon.com/elasticache/
 created: '2024-01-15'
-modified: '2026-04-19'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 tags:
 - Amazon Web Services
@@ -17,7 +18,8 @@ tags:
 - Redis
 apis:
 - name: Amazon ElastiCache API
-  description: API for managing Amazon ElastiCache clusters, replication groups, parameter groups, and related caching infrastructure resources.
+  description: API for managing Amazon ElastiCache clusters, replication groups, parameter groups, and related caching infrastructure
+    resources.
   humanURL: https://aws.amazon.com/elasticache/
   baseURL: https://elasticache.amazonaws.com
   tags:
@@ -46,6 +48,14 @@ apis:
     url: json-schema/amazon-elasticache-create-cache-cluster-result-schema.json
   - type: JSONLD
     url: json-ld/amazon-elasticache-context.jsonld
+  - type: NaftikoCapability
+    url: capabilities/amazon-elasticache-createreplicationgroup.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-elasticache-deletecachecluster.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-elasticache-describereplicationgroups.yaml
+  - type: NaftikoCapability
+    url: capabilities/amazon-elasticache-general.yaml
 common:
 - type: Portal
   url: https://aws.amazon.com/
@@ -87,10 +97,6 @@ common:
   url: https://aws.amazon.com/contact-us/
 - type: SpectralRules
   url: rules/amazon-elasticache-spectral-rules.yml
-- type: NaftikoCapability
-  url: capabilities/amazon-elasticache-capability.yaml
-- type: NaftikoCapability
-  url: capabilities/shared/api.yaml
 - type: Vocabulary
   url: vocabulary/amazon-elasticache-vocabulary.yaml
 - type: Features
@@ -128,15 +134,15 @@ common:
 - type: Integrations
   url: https://aws.amazon.com/marketplace
 integrations:
-  - name: Sign in
-  - name: Agent Mode
-  - name: 'Why AWS Marketplace?'
-  - name: Get started in AWS Marketplace
-  - name: Industry
-  - name: Resources
-  - name: Become a Channel Partner
-  - name: Sell in AWS Marketplace
-  - name: Manage Your Account
+- name: Sign in
+- name: Agent Mode
+- name: Why AWS Marketplace?
+- name: Get started in AWS Marketplace
+- name: Industry
+- name: Resources
+- name: Become a Channel Partner
+- name: Sell in AWS Marketplace
+- name: Manage Your Account
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

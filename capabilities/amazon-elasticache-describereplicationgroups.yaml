@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 'Amazon ElastiCache API — #DescribeReplicationGroups'
+  description: 'Amazon ElastiCache API — #DescribeReplicationGroups. 1 operations. Lead operation: Amazon ElastiCache Describe
+    Replication Groups. Self-contained Naftiko capability covering one Amazon Elasticache business surface.'
+  tags:
+  - Amazon Elasticache
+  - '#DescribeReplicationGroups'
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_ELASTICACHE_API_KEY: AMAZON_ELASTICACHE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-elasticache-describereplicationgroups
+    baseUri: https://elasticache.amazonaws.com
+    description: 'Amazon ElastiCache API — #DescribeReplicationGroups business capability. Self-contained, no shared references.'
+    resources:
+    - name: '#DescribeReplicationGroups'
+      path: /#DescribeReplicationGroups
+      operations:
+      - name: describereplicationgroups
+        method: GET
+        description: Amazon ElastiCache Describe Replication Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: ReplicationGroupId
+          in: query
+          type: string
+          description: The identifier for the replication group to describe.
+        - name: MaxRecords
+          in: query
+          type: integer
+          description: The maximum number of records to include in the response.
+        - name: Marker
+          in: query
+          type: string
+          description: An optional marker returned from a prior request.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_ELASTICACHE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-elasticache-describereplicationgroups-rest
+    port: 8080
+    description: 'REST adapter for Amazon ElastiCache API — #DescribeReplicationGroups. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.'
+    resources:
+    - path: /v1/describereplicationgroups
+      name: describereplicationgroups
+      description: 'REST surface for #DescribeReplicationGroups.'
+      operations:
+      - method: GET
+        name: describereplicationgroups
+        description: Amazon ElastiCache Describe Replication Groups
+        call: amazon-elasticache-describereplicationgroups.describereplicationgroups
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          ReplicationGroupId: rest.ReplicationGroupId
+          MaxRecords: rest.MaxRecords
+          Marker: rest.Marker
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-elasticache-describereplicationgroups-mcp
+    port: 9090
+    transport: http
+    description: 'MCP adapter for Amazon ElastiCache API — #DescribeReplicationGroups. One tool per consumed operation, routed
+      inline through this capability''s consumes block.'
+    tools:
+    - name: amazon-elasticache-describe-replication-groups
+      description: Amazon ElastiCache Describe Replication Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-elasticache-describereplicationgroups.describereplicationgroups
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        ReplicationGroupId: tools.ReplicationGroupId
+        MaxRecords: tools.MaxRecords
+        Marker: tools.Marker
+      outputParameters:
+      - type: object
+        mapping: $.

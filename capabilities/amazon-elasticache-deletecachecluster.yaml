@@ -1,0 +1,94 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: 'Amazon ElastiCache API — #DeleteCacheCluster'
+  description: 'Amazon ElastiCache API — #DeleteCacheCluster. 1 operations. Lead operation: Amazon ElastiCache Delete Cache
+    Cluster. Self-contained Naftiko capability covering one Amazon Elasticache business surface.'
+  tags:
+  - Amazon Elasticache
+  - '#DeleteCacheCluster'
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_ELASTICACHE_API_KEY: AMAZON_ELASTICACHE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-elasticache-deletecachecluster
+    baseUri: https://elasticache.amazonaws.com
+    description: 'Amazon ElastiCache API — #DeleteCacheCluster business capability. Self-contained, no shared references.'
+    resources:
+    - name: '#DeleteCacheCluster'
+      path: /#DeleteCacheCluster
+      operations:
+      - name: deletecachecluster
+        method: POST
+        description: Amazon ElastiCache Delete Cache Cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Action
+          in: query
+          type: string
+          required: true
+        - name: Version
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_ELASTICACHE_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-elasticache-deletecachecluster-rest
+    port: 8080
+    description: 'REST adapter for Amazon ElastiCache API — #DeleteCacheCluster. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.'
+    resources:
+    - path: /v1/deletecachecluster
+      name: deletecachecluster
+      description: 'REST surface for #DeleteCacheCluster.'
+      operations:
+      - method: POST
+        name: deletecachecluster
+        description: Amazon ElastiCache Delete Cache Cluster
+        call: amazon-elasticache-deletecachecluster.deletecachecluster
+        with:
+          Action: rest.Action
+          Version: rest.Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-elasticache-deletecachecluster-mcp
+    port: 9090
+    transport: http
+    description: 'MCP adapter for Amazon ElastiCache API — #DeleteCacheCluster. One tool per consumed operation, routed inline
+      through this capability''s consumes block.'
+    tools:
+    - name: amazon-elasticache-delete-cache-cluster
+      description: Amazon ElastiCache Delete Cache Cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-elasticache-deletecachecluster.deletecachecluster
+      with:
+        Action: tools.Action
+        Version: tools.Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
