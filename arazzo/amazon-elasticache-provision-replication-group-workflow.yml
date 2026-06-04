@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: Amazon ElastiCache Provision Replication Group
+  summary: Create a Redis replication group and poll until it becomes available.
+  description: >-
+    Provisions a new Amazon ElastiCache Redis replication group and waits for it
+    to finish coming online. The workflow submits a CreateReplicationGroup
+    request, captures the returned replication group identifier, and repeatedly
+    calls DescribeReplicationGroups until the group reports it is available.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description. Requests use the
+    AWS query (x-www-form-urlencoded) protocol with the Action and Version query
+    parameters that the ElastiCache API requires.
+  version: 1.0.0
+sourceDescriptions:
+- name: elastiCacheApi
+  url: ../openapi/amazon-elasticache-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-replication-group
+  summary: Create a replication group and wait for it to become available.
+  description: >-
+    Creates a Redis replication group with the supplied identifier and node
+    configuration, then polls DescribeReplicationGroups until the group reports
+    it is available.
+  inputs:
+    type: object
+    required:
+    - ReplicationGroupId
+    - ReplicationGroupDescription
+    - CacheNodeType
+    - NumCacheClusters
+    properties:
+      ReplicationGroupId:
+        type: string
+        description: The replication group identifier.
+      ReplicationGroupDescription:
+        type: string
+        description: A user-created description for the replication group.
+      CacheNodeType:
+        type: string
+        description: The compute and memory capacity of the nodes in the node group.
+      NumCacheClusters:
+        type: integer
+        description: The number of clusters this replication group initially has.
+      AutomaticFailoverEnabled:
+        type: boolean
+        description: Whether a read replica is automatically promoted if the primary fails.
+      EngineVersion:
+        type: string
+        description: The version number of the Redis engine to use.
+  steps:
+  - stepId: createGroup
+    description: >-
+      Submit a CreateReplicationGroup request for the supplied identifier and
+      node configuration. The Action and Version query parameters identify the
+      AWS operation; the group attributes travel in the form-encoded body.
+    operationId: createReplicationGroup
+    parameters:
+    - name: Action
+      in: query
+      value: CreateReplicationGroup
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        ReplicationGroupId: $inputs.ReplicationGroupId
+        ReplicationGroupDescription: $inputs.ReplicationGroupDescription
+        CacheNodeType: $inputs.CacheNodeType
+        NumCacheClusters: $inputs.NumCacheClusters
+        AutomaticFailoverEnabled: $inputs.AutomaticFailoverEnabled
+        Engine: redis
+        EngineVersion: $inputs.EngineVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      groupId: $inputs.ReplicationGroupId
+  - stepId: pollGroup
+    description: >-
+      Describe the just-created replication group and confirm it has reached an
+      available status. The ReplicationGroupId query parameter scopes the
+      description to the single group created in the previous step.
+    operationId: describeReplicationGroups
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeReplicationGroups
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: ReplicationGroupId
+      in: query
+      value: $steps.createGroup.outputs.groupId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      replicationGroups: $response.body#/ReplicationGroups
+  outputs:
+    replicationGroupId: $steps.createGroup.outputs.groupId
+    replicationGroups: $steps.pollGroup.outputs.replicationGroups

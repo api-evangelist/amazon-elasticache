@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: Amazon ElastiCache Decommission Cache Cluster
+  summary: Snapshot and delete a cache cluster, then poll until it is fully removed.
+  description: >-
+    Safely retires an Amazon ElastiCache cache cluster while preserving its data
+    in a final snapshot. The workflow first describes the cluster to confirm it
+    exists, submits a DeleteCacheCluster request that names a
+    FinalSnapshotIdentifier so the data is captured before teardown, and then
+    polls DescribeCacheClusters to confirm the cluster has finished deleting.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description. Requests use the AWS query
+    (x-www-form-urlencoded) protocol with the Action and Version query parameters
+    that the ElastiCache API requires.
+  version: 1.0.0
+sourceDescriptions:
+- name: elastiCacheApi
+  url: ../openapi/amazon-elasticache-openapi.yml
+  type: openapi
+workflows:
+- workflowId: decommission-cache-cluster
+  summary: Take a final snapshot, delete a cache cluster, and confirm removal.
+  description: >-
+    Confirms a cluster exists, deletes it while capturing a final snapshot, and
+    polls DescribeCacheClusters until the cluster reports it is deleting or has
+    been removed.
+  inputs:
+    type: object
+    required:
+    - CacheClusterId
+    - FinalSnapshotIdentifier
+    properties:
+      CacheClusterId:
+        type: string
+        description: The identifier of the cluster to delete.
+      FinalSnapshotIdentifier:
+        type: string
+        description: The name to give the final snapshot taken before deletion.
+  steps:
+  - stepId: verifyCluster
+    description: >-
+      Describe the cluster to confirm it exists before deleting it. The
+      CacheClusterId query parameter scopes the description to the single target
+      cluster.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $inputs.CacheClusterId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentStatus: $response.body#/CacheClusters/0/CacheClusterStatus
+  - stepId: deleteCluster
+    description: >-
+      Submit a DeleteCacheCluster request that names a FinalSnapshotIdentifier so
+      a final snapshot is captured before the cluster is torn down. The cluster
+      identifier and snapshot name travel in the form-encoded body.
+    operationId: deleteCacheCluster
+    parameters:
+    - name: Action
+      in: query
+      value: DeleteCacheCluster
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        CacheClusterId: $inputs.CacheClusterId
+        FinalSnapshotIdentifier: $inputs.FinalSnapshotIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deletedClusterId: $inputs.CacheClusterId
+  - stepId: pollDeletion
+    description: >-
+      Describe the cluster again to confirm the deletion is in progress or
+      complete. The CacheClusterId query parameter scopes the description to the
+      cluster being removed.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $steps.deleteCluster.outputs.deletedClusterId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      remainingClusters: $response.body#/CacheClusters
+  outputs:
+    deletedClusterId: $steps.deleteCluster.outputs.deletedClusterId
+    remainingClusters: $steps.pollDeletion.outputs.remainingClusters

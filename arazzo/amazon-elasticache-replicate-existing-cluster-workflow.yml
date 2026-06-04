@@ -1,0 +1,116 @@
+arazzo: 1.0.1
+info:
+  title: Amazon ElastiCache Replicate Existing Cluster
+  summary: Verify an existing cluster, then build a replication group around it and poll.
+  description: >-
+    Adds high availability to an existing Amazon ElastiCache cluster by turning
+    it into the primary of a new replication group. The workflow first describes
+    the supplied cluster to confirm it exists and is available, then submits a
+    CreateReplicationGroup request that names the cluster as PrimaryClusterId,
+    and finally polls DescribeReplicationGroups until the group is available.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description. Requests use the AWS query
+    (x-www-form-urlencoded) protocol with the Action and Version query parameters
+    that the ElastiCache API requires.
+  version: 1.0.0
+sourceDescriptions:
+- name: elastiCacheApi
+  url: ../openapi/amazon-elasticache-openapi.yml
+  type: openapi
+workflows:
+- workflowId: replicate-existing-cluster
+  summary: Promote an existing cluster into the primary of a new replication group.
+  description: >-
+    Confirms an existing cluster is available, then creates a Redis replication
+    group that uses it as the primary cluster and waits for the group to come
+    online.
+  inputs:
+    type: object
+    required:
+    - PrimaryClusterId
+    - ReplicationGroupId
+    - ReplicationGroupDescription
+    properties:
+      PrimaryClusterId:
+        type: string
+        description: The identifier of the existing cluster to use as the primary.
+      ReplicationGroupId:
+        type: string
+        description: The identifier for the new replication group.
+      ReplicationGroupDescription:
+        type: string
+        description: A user-created description for the replication group.
+      AutomaticFailoverEnabled:
+        type: boolean
+        description: Whether a read replica is automatically promoted if the primary fails.
+  steps:
+  - stepId: verifyPrimary
+    description: >-
+      Describe the existing cluster to confirm it exists before building a
+      replication group around it. The CacheClusterId query parameter scopes the
+      description to the single candidate primary cluster.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $inputs.PrimaryClusterId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      primaryStatus: $response.body#/CacheClusters/0/CacheClusterStatus
+      primaryEngine: $response.body#/CacheClusters/0/Engine
+  - stepId: createGroup
+    description: >-
+      Submit a CreateReplicationGroup request that names the verified cluster as
+      the PrimaryClusterId. The Action and Version query parameters identify the
+      AWS operation; the group attributes travel in the form-encoded body.
+    operationId: createReplicationGroup
+    parameters:
+    - name: Action
+      in: query
+      value: CreateReplicationGroup
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        ReplicationGroupId: $inputs.ReplicationGroupId
+        ReplicationGroupDescription: $inputs.ReplicationGroupDescription
+        PrimaryClusterId: $inputs.PrimaryClusterId
+        AutomaticFailoverEnabled: $inputs.AutomaticFailoverEnabled
+        Engine: redis
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      groupId: $inputs.ReplicationGroupId
+  - stepId: pollGroup
+    description: >-
+      Describe the new replication group and confirm it has reached an available
+      status. The ReplicationGroupId query parameter scopes the description to
+      the group just created.
+    operationId: describeReplicationGroups
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeReplicationGroups
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: ReplicationGroupId
+      in: query
+      value: $steps.createGroup.outputs.groupId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      replicationGroups: $response.body#/ReplicationGroups
+  outputs:
+    primaryClusterId: $inputs.PrimaryClusterId
+    replicationGroupId: $steps.createGroup.outputs.groupId
+    replicationGroups: $steps.pollGroup.outputs.replicationGroups

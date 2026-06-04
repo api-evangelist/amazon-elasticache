@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: Amazon ElastiCache Audit Cluster Readiness
+  summary: Describe a cluster, branch on its status, and confirm its replication group.
+  description: >-
+    Inspects an Amazon ElastiCache cache cluster and follows up based on what it
+    finds. The workflow describes the cluster with node detail; when the cluster
+    belongs to a replication group it then describes that replication group to
+    surface its members, and when the cluster is standalone it ends after the
+    single description. This gives an at-a-glance readiness picture for a cluster
+    and the high-availability group it participates in. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description. Requests use the AWS query
+    (x-www-form-urlencoded) protocol with the Action and Version query parameters
+    that the ElastiCache API requires.
+  version: 1.0.0
+sourceDescriptions:
+- name: elastiCacheApi
+  url: ../openapi/amazon-elasticache-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-cluster-readiness
+  summary: Describe a cluster and, if it is replicated, describe its replication group.
+  description: >-
+    Describes a single cache cluster and branches: when the cluster reports a
+    ReplicationGroupId it describes that replication group, otherwise it ends
+    after the cluster description.
+  inputs:
+    type: object
+    required:
+    - CacheClusterId
+    properties:
+      CacheClusterId:
+        type: string
+        description: The identifier of the cluster to audit.
+  steps:
+  - stepId: describeCluster
+    description: >-
+      Describe the target cluster with node information so its status and any
+      replication group membership are visible. The CacheClusterId query
+      parameter scopes the description to the single cluster.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $inputs.CacheClusterId
+    - name: ShowCacheNodeInfo
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterStatus: $response.body#/CacheClusters/0/CacheClusterStatus
+      replicationGroupId: $response.body#/CacheClusters/0/ReplicationGroupId
+    onSuccess:
+    - name: isReplicated
+      type: goto
+      stepId: describeGroup
+      criteria:
+      - context: $response.body
+        condition: $.CacheClusters[0].ReplicationGroupId != null
+        type: jsonpath
+    - name: isStandalone
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.CacheClusters[0].ReplicationGroupId == null
+        type: jsonpath
+  - stepId: describeGroup
+    description: >-
+      Describe the replication group the cluster belongs to so the full set of
+      member clusters and the group's status are surfaced. The
+      ReplicationGroupId query parameter scopes the description to that group.
+    operationId: describeReplicationGroups
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeReplicationGroups
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: ReplicationGroupId
+      in: query
+      value: $steps.describeCluster.outputs.replicationGroupId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      replicationGroups: $response.body#/ReplicationGroups
+  outputs:
+    cacheClusterId: $inputs.CacheClusterId
+    clusterStatus: $steps.describeCluster.outputs.clusterStatus
+    replicationGroups: $steps.describeGroup.outputs.replicationGroups

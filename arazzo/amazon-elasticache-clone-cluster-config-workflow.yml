@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Amazon ElastiCache Clone Cluster Config
+  summary: Read a source cluster's config, create a matching cluster, and poll it.
+  description: >-
+    Stands up a new Amazon ElastiCache cache cluster that mirrors the engine and
+    node configuration of an existing one. The workflow describes a source
+    cluster to read its Engine, EngineVersion, CacheNodeType and node count, then
+    submits a CreateCacheCluster request that reuses those values under a new
+    identifier, and finally polls DescribeCacheClusters until the clone reports
+    it is available. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+    Requests use the AWS query (x-www-form-urlencoded) protocol with the Action
+    and Version query parameters that the ElastiCache API requires.
+  version: 1.0.0
+sourceDescriptions:
+- name: elastiCacheApi
+  url: ../openapi/amazon-elasticache-openapi.yml
+  type: openapi
+workflows:
+- workflowId: clone-cluster-config
+  summary: Create a new cluster that reuses the configuration of an existing one.
+  description: >-
+    Reads a source cluster's engine and node configuration and creates a new
+    cluster from those values, then polls until the new cluster is available.
+  inputs:
+    type: object
+    required:
+    - SourceCacheClusterId
+    - NewCacheClusterId
+    properties:
+      SourceCacheClusterId:
+        type: string
+        description: The identifier of the existing cluster whose config to copy.
+      NewCacheClusterId:
+        type: string
+        description: The identifier for the new cloned cluster.
+  steps:
+  - stepId: describeSource
+    description: >-
+      Describe the source cluster with node information to read the engine and
+      node configuration that the clone should reuse. The CacheClusterId query
+      parameter scopes the description to the source cluster.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $inputs.SourceCacheClusterId
+    - name: ShowCacheNodeInfo
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      sourceEngine: $response.body#/CacheClusters/0/Engine
+      sourceEngineVersion: $response.body#/CacheClusters/0/EngineVersion
+      sourceNodeType: $response.body#/CacheClusters/0/CacheNodeType
+      sourceNumNodes: $response.body#/CacheClusters/0/NumCacheNodes
+  - stepId: createClone
+    description: >-
+      Submit a CreateCacheCluster request that reuses the source cluster's engine
+      and node configuration under the new identifier. The cluster attributes
+      travel in the form-encoded body.
+    operationId: createCacheCluster
+    parameters:
+    - name: Action
+      in: query
+      value: CreateCacheCluster
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        CacheClusterId: $inputs.NewCacheClusterId
+        Engine: $steps.describeSource.outputs.sourceEngine
+        EngineVersion: $steps.describeSource.outputs.sourceEngineVersion
+        CacheNodeType: $steps.describeSource.outputs.sourceNodeType
+        NumCacheNodes: $steps.describeSource.outputs.sourceNumNodes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cloneId: $response.body#/CacheCluster/CacheClusterId
+      cloneStatus: $response.body#/CacheCluster/CacheClusterStatus
+  - stepId: pollClone
+    description: >-
+      Describe the cloned cluster and confirm it has reached an available status.
+      The CacheClusterId query parameter scopes the description to the clone.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $steps.createClone.outputs.cloneId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cloneStatus: $response.body#/CacheClusters/0/CacheClusterStatus
+  outputs:
+    sourceCacheClusterId: $inputs.SourceCacheClusterId
+    cloneCacheClusterId: $steps.createClone.outputs.cloneId
+    cloneStatus: $steps.pollClone.outputs.cloneStatus

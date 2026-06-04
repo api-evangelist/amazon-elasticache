@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Amazon ElastiCache Provision Cache Cluster
+  summary: Create a cache cluster and poll until it reports an available status.
+  description: >-
+    Provisions a new Amazon ElastiCache cache cluster and then waits for it to
+    finish coming online. The workflow submits a CreateCacheCluster request,
+    captures the returned cluster identifier, and repeatedly calls
+    DescribeCacheClusters until the cluster's CacheClusterStatus indicates it is
+    available. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description. Requests use
+    the AWS query (x-www-form-urlencoded) protocol with the Action and Version
+    query parameters that the ElastiCache API requires.
+  version: 1.0.0
+sourceDescriptions:
+- name: elastiCacheApi
+  url: ../openapi/amazon-elasticache-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-cache-cluster
+  summary: Create a cache cluster and wait for it to become available.
+  description: >-
+    Creates a single cache cluster using the supplied identifier, engine and
+    node configuration, then polls DescribeCacheClusters until the cluster's
+    status reports it is available.
+  inputs:
+    type: object
+    required:
+    - CacheClusterId
+    - Engine
+    - CacheNodeType
+    - NumCacheNodes
+    properties:
+      CacheClusterId:
+        type: string
+        description: The node group (shard) identifier for the new cluster.
+      Engine:
+        type: string
+        description: The cache engine to run, either memcached or redis.
+      EngineVersion:
+        type: string
+        description: The version number of the cache engine to use.
+      CacheNodeType:
+        type: string
+        description: The compute and memory capacity of the nodes in the node group.
+      NumCacheNodes:
+        type: integer
+        description: The initial number of cache nodes in the cluster.
+  steps:
+  - stepId: createCluster
+    description: >-
+      Submit a CreateCacheCluster request for the supplied identifier and node
+      configuration. The Action and Version query parameters identify the AWS
+      operation; the cluster attributes travel in the form-encoded body.
+    operationId: createCacheCluster
+    parameters:
+    - name: Action
+      in: query
+      value: CreateCacheCluster
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        CacheClusterId: $inputs.CacheClusterId
+        Engine: $inputs.Engine
+        EngineVersion: $inputs.EngineVersion
+        CacheNodeType: $inputs.CacheNodeType
+        NumCacheNodes: $inputs.NumCacheNodes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterId: $response.body#/CacheCluster/CacheClusterId
+      status: $response.body#/CacheCluster/CacheClusterStatus
+  - stepId: pollCluster
+    description: >-
+      Describe the just-created cluster and confirm it has reached an available
+      status. The CacheClusterId query parameter scopes the description to the
+      single cluster created in the previous step.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $steps.createCluster.outputs.clusterId
+    - name: ShowCacheNodeInfo
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterStatus: $response.body#/CacheClusters/0/CacheClusterStatus
+      endpointAddress: $response.body#/CacheClusters/0/CacheNodes/0/Endpoint/Address
+  outputs:
+    cacheClusterId: $steps.createCluster.outputs.clusterId
+    cacheClusterStatus: $steps.pollCluster.outputs.clusterStatus
+    endpointAddress: $steps.pollCluster.outputs.endpointAddress

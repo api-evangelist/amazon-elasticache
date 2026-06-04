@@ -1,0 +1,119 @@
+arazzo: 1.0.1
+info:
+  title: Amazon ElastiCache Cache Cluster Lifecycle
+  summary: Create a cache cluster, confirm it, then delete it with a final snapshot.
+  description: >-
+    Walks an Amazon ElastiCache cache cluster through a full short-lived
+    lifecycle. The workflow creates a cluster, polls DescribeCacheClusters to
+    confirm it has come online, and then deletes the cluster while capturing a
+    final snapshot so any data is preserved. This is useful for ephemeral or
+    test clusters that must be stood up, exercised, and torn down cleanly. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description. Requests use the AWS query
+    (x-www-form-urlencoded) protocol with the Action and Version query parameters
+    that the ElastiCache API requires.
+  version: 1.0.0
+sourceDescriptions:
+- name: elastiCacheApi
+  url: ../openapi/amazon-elasticache-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cache-cluster-lifecycle
+  summary: Create, confirm, and tear down a cache cluster with a final snapshot.
+  description: >-
+    Creates a cache cluster, polls until it reports it is available, then deletes
+    it while capturing a final snapshot.
+  inputs:
+    type: object
+    required:
+    - CacheClusterId
+    - Engine
+    - CacheNodeType
+    - NumCacheNodes
+    - FinalSnapshotIdentifier
+    properties:
+      CacheClusterId:
+        type: string
+        description: The node group (shard) identifier for the new cluster.
+      Engine:
+        type: string
+        description: The cache engine to run, either memcached or redis.
+      CacheNodeType:
+        type: string
+        description: The compute and memory capacity of the nodes in the node group.
+      NumCacheNodes:
+        type: integer
+        description: The initial number of cache nodes in the cluster.
+      FinalSnapshotIdentifier:
+        type: string
+        description: The name to give the final snapshot taken before deletion.
+  steps:
+  - stepId: createCluster
+    description: >-
+      Submit a CreateCacheCluster request for the supplied identifier and node
+      configuration. The cluster attributes travel in the form-encoded body.
+    operationId: createCacheCluster
+    parameters:
+    - name: Action
+      in: query
+      value: CreateCacheCluster
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        CacheClusterId: $inputs.CacheClusterId
+        Engine: $inputs.Engine
+        CacheNodeType: $inputs.CacheNodeType
+        NumCacheNodes: $inputs.NumCacheNodes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterId: $response.body#/CacheCluster/CacheClusterId
+      status: $response.body#/CacheCluster/CacheClusterStatus
+  - stepId: pollCluster
+    description: >-
+      Describe the just-created cluster and confirm it has reached an available
+      status before exercising or deleting it.
+    operationId: describeCacheClusters
+    parameters:
+    - name: Action
+      in: query
+      value: DescribeCacheClusters
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    - name: CacheClusterId
+      in: query
+      value: $steps.createCluster.outputs.clusterId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clusterStatus: $response.body#/CacheClusters/0/CacheClusterStatus
+  - stepId: deleteCluster
+    description: >-
+      Delete the cluster while naming a FinalSnapshotIdentifier so a final
+      snapshot is taken before teardown. The cluster identifier and snapshot
+      name travel in the form-encoded body.
+    operationId: deleteCacheCluster
+    parameters:
+    - name: Action
+      in: query
+      value: DeleteCacheCluster
+    - name: Version
+      in: query
+      value: '2015-02-02'
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        CacheClusterId: $steps.createCluster.outputs.clusterId
+        FinalSnapshotIdentifier: $inputs.FinalSnapshotIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deletedClusterId: $steps.createCluster.outputs.clusterId
+  outputs:
+    cacheClusterId: $steps.createCluster.outputs.clusterId
+    cacheClusterStatus: $steps.pollCluster.outputs.clusterStatus
+    deletedClusterId: $steps.deleteCluster.outputs.deletedClusterId
