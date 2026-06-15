@@ -1,0 +1,1258 @@
+{
+  "info": {
+    "_postman_id": "5d13ef5b-be43-4e15-add2-eae3c867f38c",
+    "name": "Amazon ElastiCache API",
+    "description": "Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:03:51.000Z",
+    "updatedAt": "2026-06-05T15:03:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5d13ef5b-be43-4e15-add2-eae3c867f38c"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Amazon ElastiCache Create Cache Cluster",
+          "id": "b5c42015-2ab2-45b3-8a6c-be9c691e2912",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The node group (shard) identifier.",
+                  "key": "CacheClusterId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the cache engine to be used for this cluster.",
+                  "key": "Engine",
+                  "value": "memcached"
+                },
+                {
+                  "description": "The version number of the cache engine to be used for this cluster.",
+                  "key": "EngineVersion",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The compute and memory capacity of the nodes in the node group.",
+                  "key": "CacheNodeType",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The initial number of cache nodes that the cluster has.",
+                  "key": "NumCacheNodes",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The name of the subnet group to be used for the cluster.",
+                  "key": "CacheSubnetGroupName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the parameter group to associate with this cluster.",
+                  "key": "CacheParameterGroupName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "One or more VPC security groups associated with the cluster.",
+                  "key": "SecurityGroupIds",
+                  "value": "<string>"
+                },
+                {
+                  "description": "One or more VPC security groups associated with the cluster.",
+                  "key": "SecurityGroupIds",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The EC2 Availability Zone in which the cluster is created.",
+                  "key": "PreferredAvailabilityZone",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The port number on which each of the cache nodes accepts connections.",
+                  "key": "Port",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "If true, minor engine upgrades will be applied automatically during maintenance windows.",
+                  "key": "AutoMinorVersionUpgrade",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "The number of days for which ElastiCache retains automatic snapshots.",
+                  "key": "SnapshotRetentionLimit",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CreateCacheCluster&Version=2015-02-02",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "CreateCacheCluster"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2015-02-02"
+                }
+              ]
+            },
+            "description": "Creates a cache cluster. All nodes in the cache cluster run the same protocol-compliant cache engine software, either Memcached or Redis."
+          },
+          "response": [
+            {
+              "id": "eba179d8-23d7-4baf-9acc-fdfb85deed0f",
+              "name": "Successful response with the created cache cluster details.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The node group (shard) identifier.",
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the cache engine to be used for this cluster.",
+                      "key": "Engine",
+                      "value": "memcached"
+                    },
+                    {
+                      "description": "The version number of the cache engine to be used for this cluster.",
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The compute and memory capacity of the nodes in the node group.",
+                      "key": "CacheNodeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The initial number of cache nodes that the cluster has.",
+                      "key": "NumCacheNodes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The name of the subnet group to be used for the cluster.",
+                      "key": "CacheSubnetGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the parameter group to associate with this cluster.",
+                      "key": "CacheParameterGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more VPC security groups associated with the cluster.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more VPC security groups associated with the cluster.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The EC2 Availability Zone in which the cluster is created.",
+                      "key": "PreferredAvailabilityZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The port number on which each of the cache nodes accepts connections.",
+                      "key": "Port",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "If true, minor engine upgrades will be applied automatically during maintenance windows.",
+                      "key": "AutoMinorVersionUpgrade",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The number of days for which ElastiCache retains automatic snapshots.",
+                      "key": "SnapshotRetentionLimit",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateCacheCluster&Version=2015-02-02",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateCacheCluster"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <CacheCluster>\n    <CacheClusterId>(string)</CacheClusterId>\n    <CacheClusterStatus>(string)</CacheClusterStatus>\n    <Engine>(string)</Engine>\n    <EngineVersion>(string)</EngineVersion>\n    <CacheNodeType>(string)</CacheNodeType>\n    <NumCacheNodes>(integer)</NumCacheNodes>\n    <PreferredAvailabilityZone>(string)</PreferredAvailabilityZone>\n    <CacheClusterCreateTime>(string)</CacheClusterCreateTime>\n    <PreferredMaintenanceWindow>(string)</PreferredMaintenanceWindow>\n    <CacheSubnetGroupName>(string)</CacheSubnetGroupName>\n    <CacheNodes>\n      <CacheNodeId>(string)</CacheNodeId>\n      <CacheNodeStatus>(string)</CacheNodeStatus>\n      <Endpoint>\n        <Address>(string)</Address>\n        <Port>(integer)</Port>\n      </Endpoint>\n    </CacheNodes>\n    <CacheNodes>\n      <CacheNodeId>(string)</CacheNodeId>\n      <CacheNodeStatus>(string)</CacheNodeStatus>\n      <Endpoint>\n        <Address>(string)</Address>\n        <Port>(integer)</Port>\n      </Endpoint>\n    </CacheNodes>\n    <AutoMinorVersionUpgrade>(boolean)</AutoMinorVersionUpgrade>\n    <SecurityGroups>\n      <SecurityGroupId>(string)</SecurityGroupId>\n      <Status>(string)</Status>\n    </SecurityGroups>\n    <SecurityGroups>\n      <SecurityGroupId>(string)</SecurityGroupId>\n      <Status>(string)</Status>\n    </SecurityGroups>\n    <ReplicationGroupId>(string)</ReplicationGroupId>\n    <SnapshotRetentionLimit>(integer)</SnapshotRetentionLimit>\n    <ARN>(string)</ARN>\n  </CacheCluster>\n</element>",
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-eba179d8-23d7-4baf-9acc-fdfb85deed0f"
+            },
+            {
+              "id": "01876aba-782e-4f98-9603-22a1c89ddf49",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The node group (shard) identifier.",
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the cache engine to be used for this cluster.",
+                      "key": "Engine",
+                      "value": "memcached"
+                    },
+                    {
+                      "description": "The version number of the cache engine to be used for this cluster.",
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The compute and memory capacity of the nodes in the node group.",
+                      "key": "CacheNodeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The initial number of cache nodes that the cluster has.",
+                      "key": "NumCacheNodes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The name of the subnet group to be used for the cluster.",
+                      "key": "CacheSubnetGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the parameter group to associate with this cluster.",
+                      "key": "CacheParameterGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more VPC security groups associated with the cluster.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more VPC security groups associated with the cluster.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The EC2 Availability Zone in which the cluster is created.",
+                      "key": "PreferredAvailabilityZone",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The port number on which each of the cache nodes accepts connections.",
+                      "key": "Port",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "If true, minor engine upgrades will be applied automatically during maintenance windows.",
+                      "key": "AutoMinorVersionUpgrade",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The number of days for which ElastiCache retains automatic snapshots.",
+                      "key": "SnapshotRetentionLimit",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateCacheCluster&Version=2015-02-02",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateCacheCluster"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-01876aba-782e-4f98-9603-22a1c89ddf49"
+            }
+          ],
+          "createdAt": "2026-06-05T15:03:51.000Z",
+          "updatedAt": "2026-06-05T15:03:51.000Z",
+          "uid": "35240-b5c42015-2ab2-45b3-8a6c-be9c691e2912"
+        },
+        {
+          "name": "Amazon ElastiCache Describe Cache Clusters",
+          "id": "ed26b5ae-0de1-4881-9f73-f0c269b1a704",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DescribeCacheClusters&Version=2015-02-02&CacheClusterId=<string>&ShowCacheNodeInfo=<boolean>&MaxRecords=<integer>&Marker=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "DescribeCacheClusters"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2015-02-02"
+                },
+                {
+                  "description": "The user-supplied cluster identifier.",
+                  "key": "CacheClusterId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "If true, lists individual cache node information.",
+                  "key": "ShowCacheNodeInfo",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "The maximum number of records to include in the response.",
+                  "key": "MaxRecords",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "An optional marker returned from a prior request.",
+                  "key": "Marker",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied."
+          },
+          "response": [
+            {
+              "id": "7fc1a61f-9e35-4b5b-8935-53e2c3da42cc",
+              "name": "Successful response with cache cluster details.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DescribeCacheClusters&Version=2015-02-02&CacheClusterId=<string>&ShowCacheNodeInfo=<boolean>&MaxRecords=<integer>&Marker=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DescribeCacheClusters"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "description": "The user-supplied cluster identifier.",
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If true, lists individual cache node information.",
+                      "key": "ShowCacheNodeInfo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The maximum number of records to include in the response.",
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "An optional marker returned from a prior request.",
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "xml",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <CacheClusters>\n    <CacheClusterId>(string)</CacheClusterId>\n    <CacheClusterStatus>(string)</CacheClusterStatus>\n    <Engine>(string)</Engine>\n    <EngineVersion>(string)</EngineVersion>\n    <CacheNodeType>(string)</CacheNodeType>\n    <NumCacheNodes>(integer)</NumCacheNodes>\n    <PreferredAvailabilityZone>(string)</PreferredAvailabilityZone>\n    <CacheClusterCreateTime>(string)</CacheClusterCreateTime>\n    <PreferredMaintenanceWindow>(string)</PreferredMaintenanceWindow>\n    <CacheSubnetGroupName>(string)</CacheSubnetGroupName>\n    <CacheNodes>\n      <CacheNodeId>(string)</CacheNodeId>\n      <CacheNodeStatus>(string)</CacheNodeStatus>\n      <Endpoint>\n        <Address>(string)</Address>\n        <Port>(integer)</Port>\n      </Endpoint>\n    </CacheNodes>\n    <CacheNodes>\n      <CacheNodeId>(string)</CacheNodeId>\n      <CacheNodeStatus>(string)</CacheNodeStatus>\n      <Endpoint>\n        <Address>(string)</Address>\n        <Port>(integer)</Port>\n      </Endpoint>\n    </CacheNodes>\n    <AutoMinorVersionUpgrade>(boolean)</AutoMinorVersionUpgrade>\n    <SecurityGroups>\n      <SecurityGroupId>(string)</SecurityGroupId>\n      <Status>(string)</Status>\n    </SecurityGroups>\n    <SecurityGroups>\n      <SecurityGroupId>(string)</SecurityGroupId>\n      <Status>(string)</Status>\n    </SecurityGroups>\n    <ReplicationGroupId>(string)</ReplicationGroupId>\n    <SnapshotRetentionLimit>(integer)</SnapshotRetentionLimit>\n    <ARN>(string)</ARN>\n  </CacheClusters>\n  <CacheClusters>\n    <CacheClusterId>(string)</CacheClusterId>\n    <CacheClusterStatus>(string)</CacheClusterStatus>\n    <Engine>(string)</Engine>\n    <EngineVersion>(string)</EngineVersion>\n    <CacheNodeType>(string)</CacheNodeType>\n    <NumCacheNodes>(integer)</NumCacheNodes>\n    <PreferredAvailabilityZone>(string)</PreferredAvailabilityZone>\n    <CacheClusterCreateTime>(string)</CacheClusterCreateTime>\n    <PreferredMaintenanceWindow>(string)</PreferredMaintenanceWindow>\n    <CacheSubnetGroupName>(string)</CacheSubnetGroupName>\n    <CacheNodes>\n      <CacheNodeId>(string)</CacheNodeId>\n      <CacheNodeStatus>(string)</CacheNodeStatus>\n      <Endpoint>\n        <Address>(string)</Address>\n        <Port>(integer)</Port>\n      </Endpoint>\n    </CacheNodes>\n    <CacheNodes>\n      <CacheNodeId>(string)</CacheNodeId>\n      <CacheNodeStatus>(string)</CacheNodeStatus>\n      <Endpoint>\n        <Address>(string)</Address>\n        <Port>(integer)</Port>\n      </Endpoint>\n    </CacheNodes>\n    <AutoMinorVersionUpgrade>(boolean)</AutoMinorVersionUpgrade>\n    <SecurityGroups>\n      <SecurityGroupId>(string)</SecurityGroupId>\n      <Status>(string)</Status>\n    </SecurityGroups>\n    <SecurityGroups>\n      <SecurityGroupId>(string)</SecurityGroupId>\n      <Status>(string)</Status>\n    </SecurityGroups>\n    <ReplicationGroupId>(string)</ReplicationGroupId>\n    <SnapshotRetentionLimit>(integer)</SnapshotRetentionLimit>\n    <ARN>(string)</ARN>\n  </CacheClusters>\n  <Marker>(string)</Marker>\n</element>",
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-7fc1a61f-9e35-4b5b-8935-53e2c3da42cc"
+            },
+            {
+              "id": "60696388-7798-4676-8ea5-b823ad9a3a6b",
+              "name": "Cache cluster not found.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DescribeCacheClusters&Version=2015-02-02&CacheClusterId=<string>&ShowCacheNodeInfo=<boolean>&MaxRecords=<integer>&Marker=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DescribeCacheClusters"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "description": "The user-supplied cluster identifier.",
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If true, lists individual cache node information.",
+                      "key": "ShowCacheNodeInfo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The maximum number of records to include in the response.",
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "An optional marker returned from a prior request.",
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-60696388-7798-4676-8ea5-b823ad9a3a6b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:03:51.000Z",
+          "updatedAt": "2026-06-05T15:03:51.000Z",
+          "uid": "35240-ed26b5ae-0de1-4881-9f73-f0c269b1a704"
+        }
+      ],
+      "id": "f2252c29-4a88-4d32-bb68-fcbf2303fec2",
+      "createdAt": "2026-06-05T15:03:51.000Z",
+      "updatedAt": "2026-06-05T15:03:51.000Z",
+      "uid": "35240-f2252c29-4a88-4d32-bb68-fcbf2303fec2"
+    },
+    {
+      "name": "#DeleteCacheCluster",
+      "item": [
+        {
+          "name": "Amazon ElastiCache Delete Cache Cluster",
+          "id": "0448fa34-83d0-4d15-92fa-4afe48d76251",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The cluster identifier for the cluster to be deleted.",
+                  "key": "CacheClusterId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The user-supplied name of a final cluster snapshot.",
+                  "key": "FinalSnapshotIdentifier",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DeleteCacheCluster&Version=2015-02-02#DeleteCacheCluster",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "DeleteCacheCluster"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2015-02-02"
+                }
+              ],
+              "hash": "DeleteCacheCluster"
+            },
+            "description": "Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly."
+          },
+          "response": [
+            {
+              "id": "38b58cbe-eeca-4156-9be0-676f3c720af5",
+              "name": "Successful response with the deleted cache cluster details.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The cluster identifier for the cluster to be deleted.",
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The user-supplied name of a final cluster snapshot.",
+                      "key": "FinalSnapshotIdentifier",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DeleteCacheCluster&Version=2015-02-02#DeleteCacheCluster",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DeleteCacheCluster"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "hash": "DeleteCacheCluster"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-38b58cbe-eeca-4156-9be0-676f3c720af5"
+            },
+            {
+              "id": "8fc85260-b0f4-4129-852e-992bd3f22d97",
+              "name": "Cache cluster not found.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The cluster identifier for the cluster to be deleted.",
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The user-supplied name of a final cluster snapshot.",
+                      "key": "FinalSnapshotIdentifier",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DeleteCacheCluster&Version=2015-02-02#DeleteCacheCluster",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DeleteCacheCluster"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "hash": "DeleteCacheCluster"
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-8fc85260-b0f4-4129-852e-992bd3f22d97"
+            }
+          ],
+          "createdAt": "2026-06-05T15:03:51.000Z",
+          "updatedAt": "2026-06-05T15:03:51.000Z",
+          "uid": "35240-0448fa34-83d0-4d15-92fa-4afe48d76251"
+        }
+      ],
+      "id": "e8e48358-3605-4b85-a6ec-c5dbb0c3889f",
+      "createdAt": "2026-06-05T15:03:51.000Z",
+      "updatedAt": "2026-06-05T15:03:51.000Z",
+      "uid": "35240-e8e48358-3605-4b85-a6ec-c5dbb0c3889f"
+    },
+    {
+      "name": "#CreateReplicationGroup",
+      "item": [
+        {
+          "name": "Amazon ElastiCache Create Replication Group",
+          "id": "9eb3bc69-b9c4-439d-9e0e-e62783e2f1ee",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) The replication group identifier.",
+                  "key": "ReplicationGroupId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) A user-created description for the replication group.",
+                  "key": "ReplicationGroupDescription",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The identifier of the cluster that serves as the primary for this replication group.",
+                  "key": "PrimaryClusterId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.",
+                  "key": "AutomaticFailoverEnabled",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "The number of clusters this replication group initially has.",
+                  "key": "NumCacheClusters",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The compute and memory capacity of the nodes in the node group.",
+                  "key": "CacheNodeType",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the cache engine to be used for the clusters in this replication group.",
+                  "key": "Engine",
+                  "value": "redis"
+                },
+                {
+                  "description": "The version number of the cache engine.",
+                  "key": "EngineVersion",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The name of the cache subnet group.",
+                  "key": "CacheSubnetGroupName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "One or more Amazon VPC security groups associated with this replication group.",
+                  "key": "SecurityGroupIds",
+                  "value": "<string>"
+                },
+                {
+                  "description": "One or more Amazon VPC security groups associated with this replication group.",
+                  "key": "SecurityGroupIds",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/?Action=CreateReplicationGroup&Version=2015-02-02#CreateReplicationGroup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "CreateReplicationGroup"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2015-02-02"
+                }
+              ],
+              "hash": "CreateReplicationGroup"
+            },
+            "description": "Creates a Redis replication group with cluster mode disabled or cluster mode enabled."
+          },
+          "response": [
+            {
+              "id": "a54a4945-21f5-4113-bfd8-28234106df03",
+              "name": "Successful response with the created replication group details.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The replication group identifier.",
+                      "key": "ReplicationGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A user-created description for the replication group.",
+                      "key": "ReplicationGroupDescription",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The identifier of the cluster that serves as the primary for this replication group.",
+                      "key": "PrimaryClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.",
+                      "key": "AutomaticFailoverEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The number of clusters this replication group initially has.",
+                      "key": "NumCacheClusters",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The compute and memory capacity of the nodes in the node group.",
+                      "key": "CacheNodeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the cache engine to be used for the clusters in this replication group.",
+                      "key": "Engine",
+                      "value": "redis"
+                    },
+                    {
+                      "description": "The version number of the cache engine.",
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the cache subnet group.",
+                      "key": "CacheSubnetGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more Amazon VPC security groups associated with this replication group.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more Amazon VPC security groups associated with this replication group.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateReplicationGroup&Version=2015-02-02#CreateReplicationGroup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateReplicationGroup"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "hash": "CreateReplicationGroup"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-a54a4945-21f5-4113-bfd8-28234106df03"
+            },
+            {
+              "id": "b6a1e72c-0bf6-411e-9dd5-3082264619e9",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The replication group identifier.",
+                      "key": "ReplicationGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) A user-created description for the replication group.",
+                      "key": "ReplicationGroupDescription",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The identifier of the cluster that serves as the primary for this replication group.",
+                      "key": "PrimaryClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.",
+                      "key": "AutomaticFailoverEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The number of clusters this replication group initially has.",
+                      "key": "NumCacheClusters",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The compute and memory capacity of the nodes in the node group.",
+                      "key": "CacheNodeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the cache engine to be used for the clusters in this replication group.",
+                      "key": "Engine",
+                      "value": "redis"
+                    },
+                    {
+                      "description": "The version number of the cache engine.",
+                      "key": "EngineVersion",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The name of the cache subnet group.",
+                      "key": "CacheSubnetGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more Amazon VPC security groups associated with this replication group.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "One or more Amazon VPC security groups associated with this replication group.",
+                      "key": "SecurityGroupIds",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=CreateReplicationGroup&Version=2015-02-02#CreateReplicationGroup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "CreateReplicationGroup"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "hash": "CreateReplicationGroup"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-b6a1e72c-0bf6-411e-9dd5-3082264619e9"
+            }
+          ],
+          "createdAt": "2026-06-05T15:03:51.000Z",
+          "updatedAt": "2026-06-05T15:03:51.000Z",
+          "uid": "35240-9eb3bc69-b9c4-439d-9e0e-e62783e2f1ee"
+        }
+      ],
+      "id": "ba75bf61-d6f2-4e26-a510-109559d30e80",
+      "createdAt": "2026-06-05T15:03:51.000Z",
+      "updatedAt": "2026-06-05T15:03:51.000Z",
+      "uid": "35240-ba75bf61-d6f2-4e26-a510-109559d30e80"
+    },
+    {
+      "name": "#DescribeReplicationGroups",
+      "item": [
+        {
+          "name": "Amazon ElastiCache Describe Replication Groups",
+          "id": "bcb3452b-c526-4f79-b84e-7e67af63742b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/?Action=DescribeReplicationGroups&Version=2015-02-02&ReplicationGroupId=<string>&MaxRecords=<integer>&Marker=<string>#DescribeReplicationGroups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "Action",
+                  "value": "DescribeReplicationGroups"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "Version",
+                  "value": "2015-02-02"
+                },
+                {
+                  "description": "The identifier for the replication group to describe.",
+                  "key": "ReplicationGroupId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The maximum number of records to include in the response.",
+                  "key": "MaxRecords",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "An optional marker returned from a prior request.",
+                  "key": "Marker",
+                  "value": "<string>"
+                }
+              ],
+              "hash": "DescribeReplicationGroups"
+            },
+            "description": "Returns information about a particular replication group or all replication groups."
+          },
+          "response": [
+            {
+              "id": "7cc7ef18-905e-473d-823d-95113917c048",
+              "name": "Successful response with replication group details.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DescribeReplicationGroups&Version=2015-02-02&ReplicationGroupId=<string>&MaxRecords=<integer>&Marker=<string>#DescribeReplicationGroups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DescribeReplicationGroups"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "description": "The identifier for the replication group to describe.",
+                      "key": "ReplicationGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The maximum number of records to include in the response.",
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "An optional marker returned from a prior request.",
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "hash": "DescribeReplicationGroups"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-7cc7ef18-905e-473d-823d-95113917c048"
+            },
+            {
+              "id": "84147832-dc1e-477d-a94b-209d7db10df0",
+              "name": "Replication group not found.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/?Action=DescribeReplicationGroups&Version=2015-02-02&ReplicationGroupId=<string>&MaxRecords=<integer>&Marker=<string>#DescribeReplicationGroups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "Action",
+                      "value": "DescribeReplicationGroups"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "description": "The identifier for the replication group to describe.",
+                      "key": "ReplicationGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The maximum number of records to include in the response.",
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "An optional marker returned from a prior request.",
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "hash": "DescribeReplicationGroups"
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:03:51.000Z",
+              "updatedAt": "2026-06-05T15:03:51.000Z",
+              "uid": "35240-84147832-dc1e-477d-a94b-209d7db10df0"
+            }
+          ],
+          "createdAt": "2026-06-05T15:03:51.000Z",
+          "updatedAt": "2026-06-05T15:03:51.000Z",
+          "uid": "35240-bcb3452b-c526-4f79-b84e-7e67af63742b"
+        }
+      ],
+      "id": "808c9904-866d-48dc-aca0-37900fe34501",
+      "createdAt": "2026-06-05T15:03:51.000Z",
+      "updatedAt": "2026-06-05T15:03:51.000Z",
+      "uid": "35240-808c9904-866d-48dc-aca0-37900fe34501"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://elasticache.amazonaws.com"
+    }
+  ]
+}

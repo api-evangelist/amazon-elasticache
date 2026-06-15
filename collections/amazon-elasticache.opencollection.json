@@ -1,0 +1,310 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon ElastiCache API",
+    "version": "2015-02-02"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon ElastiCache Describe Cache Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://elasticache.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "CacheClusterId",
+                "value": "",
+                "type": "query",
+                "description": "The user-supplied cluster identifier."
+              },
+              {
+                "name": "ShowCacheNodeInfo",
+                "value": "",
+                "type": "query",
+                "description": "If true, lists individual cache node information."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of records to include in the response."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "An optional marker returned from a prior request."
+              }
+            ]
+          },
+          "docs": "Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied."
+        },
+        {
+          "info": {
+            "name": "Amazon ElastiCache Create Cache Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticache.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "CacheClusterId",
+                  "value": ""
+                },
+                {
+                  "name": "Engine",
+                  "value": ""
+                },
+                {
+                  "name": "EngineVersion",
+                  "value": ""
+                },
+                {
+                  "name": "CacheNodeType",
+                  "value": ""
+                },
+                {
+                  "name": "NumCacheNodes",
+                  "value": ""
+                },
+                {
+                  "name": "CacheSubnetGroupName",
+                  "value": ""
+                },
+                {
+                  "name": "CacheParameterGroupName",
+                  "value": ""
+                },
+                {
+                  "name": "SecurityGroupIds",
+                  "value": ""
+                },
+                {
+                  "name": "PreferredAvailabilityZone",
+                  "value": ""
+                },
+                {
+                  "name": "Port",
+                  "value": ""
+                },
+                {
+                  "name": "AutoMinorVersionUpgrade",
+                  "value": ""
+                },
+                {
+                  "name": "SnapshotRetentionLimit",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a cache cluster. All nodes in the cache cluster run the same protocol-compliant cache engine software, either Memcached or Redis."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "#DeleteCacheCluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon ElastiCache Delete Cache Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticache.amazonaws.com/#DeleteCacheCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "CacheClusterId",
+                  "value": ""
+                },
+                {
+                  "name": "FinalSnapshotIdentifier",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "#CreateReplicationGroup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon ElastiCache Create Replication Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticache.amazonaws.com/#CreateReplicationGroup",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "ReplicationGroupId",
+                  "value": ""
+                },
+                {
+                  "name": "ReplicationGroupDescription",
+                  "value": ""
+                },
+                {
+                  "name": "PrimaryClusterId",
+                  "value": ""
+                },
+                {
+                  "name": "AutomaticFailoverEnabled",
+                  "value": ""
+                },
+                {
+                  "name": "NumCacheClusters",
+                  "value": ""
+                },
+                {
+                  "name": "CacheNodeType",
+                  "value": ""
+                },
+                {
+                  "name": "Engine",
+                  "value": ""
+                },
+                {
+                  "name": "EngineVersion",
+                  "value": ""
+                },
+                {
+                  "name": "CacheSubnetGroupName",
+                  "value": ""
+                },
+                {
+                  "name": "SecurityGroupIds",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a Redis replication group with cluster mode disabled or cluster mode enabled."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "#DescribeReplicationGroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon ElastiCache Describe Replication Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://elasticache.amazonaws.com/#DescribeReplicationGroups",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ReplicationGroupId",
+                "value": "",
+                "type": "query",
+                "description": "The identifier for the replication group to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of records to include in the response."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "An optional marker returned from a prior request."
+              }
+            ]
+          },
+          "docs": "Returns information about a particular replication group or all replication groups."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
