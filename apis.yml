@@ -53,30 +53,27 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-elasticache/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/amazon-elasticache-audit-cluster-readiness-workflow.yml
-        name: Amazon ElastiCache Audit Cluster Readiness
-        summary: Describe a cluster, branch on its status, and confirm its replication group.
-      - url: arazzo/amazon-elasticache-cache-cluster-lifecycle-workflow.yml
-        name: Amazon ElastiCache Cache Cluster Lifecycle
-        summary: Create a cache cluster, confirm it, then delete it with a final snapshot.
-      - url: arazzo/amazon-elasticache-clone-cluster-config-workflow.yml
-        name: Amazon ElastiCache Clone Cluster Config
-        summary: Read a source cluster's config, create a matching cluster, and poll it.
-      - url: arazzo/amazon-elasticache-decommission-cache-cluster-workflow.yml
-        name: Amazon ElastiCache Decommission Cache Cluster
-        summary: Snapshot and delete a cache cluster, then poll until it is fully removed.
-      - url: arazzo/amazon-elasticache-provision-cache-cluster-workflow.yml
-        name: Amazon ElastiCache Provision Cache Cluster
-        summary: Create a cache cluster and poll until it reports an available status.
-      - url: arazzo/amazon-elasticache-provision-replication-group-workflow.yml
-        name: Amazon ElastiCache Provision Replication Group
-        summary: Create a Redis replication group and poll until it becomes available.
-      - url: arazzo/amazon-elasticache-replicate-existing-cluster-workflow.yml
-        name: Amazon ElastiCache Replicate Existing Cluster
-        summary: Verify an existing cluster, then build a replication group around it and poll.
+  - type: Arazzo
+    url: arazzo/amazon-elasticache-audit-cluster-readiness-workflow.yml
+    name: Amazon ElastiCache Audit Cluster Readiness
+  - type: Arazzo
+    url: arazzo/amazon-elasticache-cache-cluster-lifecycle-workflow.yml
+    name: Amazon ElastiCache Cache Cluster Lifecycle
+  - type: Arazzo
+    url: arazzo/amazon-elasticache-clone-cluster-config-workflow.yml
+    name: Amazon ElastiCache Clone Cluster Config
+  - type: Arazzo
+    url: arazzo/amazon-elasticache-decommission-cache-cluster-workflow.yml
+    name: Amazon ElastiCache Decommission Cache Cluster
+  - type: Arazzo
+    url: arazzo/amazon-elasticache-provision-cache-cluster-workflow.yml
+    name: Amazon ElastiCache Provision Cache Cluster
+  - type: Arazzo
+    url: arazzo/amazon-elasticache-provision-replication-group-workflow.yml
+    name: Amazon ElastiCache Provision Replication Group
+  - type: Arazzo
+    url: arazzo/amazon-elasticache-replicate-existing-cluster-workflow.yml
+    name: Amazon ElastiCache Replicate Existing Cluster
   - type: Portal
     url: https://aws.amazon.com/
   - type: DeveloperPortal
@@ -89,7 +86,7 @@ common:
     url: https://github.com/aws
   - type: Console
     url: https://console.aws.amazon.com/elasticache/
-  - type: SignUp
+  - type: Signup
     url: https://portal.aws.amazon.com/billing/signup
   - type: Login
     url: https://signin.aws.amazon.com/
