@@ -51,6 +51,14 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-elasticache-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/amazon-elasticache-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-elasticache-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-elasticache-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-elasticache-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-elasticache/overview
   - type: Arazzo
