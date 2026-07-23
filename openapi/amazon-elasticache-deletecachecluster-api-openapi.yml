@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: 'Amazon ElastiCache Amazon ElastiCache API #DeleteCacheCluster API'
+  description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.
+  version: '2015-02-02'
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://aws.amazon.com/elasticache/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://elasticache.amazonaws.com
+  description: Amazon ElastiCache API endpoint
+tags:
+- name: '#DeleteCacheCluster'
+paths:
+  /#DeleteCacheCluster:
+    post:
+      operationId: deleteCacheCluster
+      summary: Amazon ElastiCache Delete Cache Cluster
+      description: Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly.
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - DeleteCacheCluster
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2015-02-02'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - CacheClusterId
+              properties:
+                CacheClusterId:
+                  type: string
+                  description: The cluster identifier for the cluster to be deleted.
+                FinalSnapshotIdentifier:
+                  type: string
+                  description: The user-supplied name of a final cluster snapshot.
+            examples:
+              deleteCacheClusterRequestExample:
+                summary: Default deleteCacheCluster request
+                x-microcks-default: true
+                value:
+                  CacheClusterId: example-id-12345
+                  FinalSnapshotIdentifier: example
+      responses:
+        '200':
+          description: Successful response with the deleted cache cluster details.
+        '404':
+          description: Cache cluster not found.
+      tags:
+      - '#DeleteCacheCluster'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication.

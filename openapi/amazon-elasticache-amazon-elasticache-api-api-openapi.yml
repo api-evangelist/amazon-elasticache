@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Amazon ElastiCache API
+  title: Amazon ElastiCache Amazon ElastiCache API API
   description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.
   version: '2015-02-02'
   contact:
@@ -13,6 +13,8 @@ info:
 servers:
 - url: https://elasticache.amazonaws.com
   description: Amazon ElastiCache API endpoint
+tags:
+- name: Amazon ElastiCache API
 paths:
   /:
     post:
@@ -115,6 +117,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      tags:
+      - Amazon ElastiCache API
     get:
       operationId: describeCacheClusters
       summary: Amazon ElastiCache Describe Cache Clusters
@@ -172,188 +176,10 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
-  /#DeleteCacheCluster:
-    post:
-      operationId: deleteCacheCluster
-      summary: Amazon ElastiCache Delete Cache Cluster
-      description: Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly.
-      parameters:
-      - name: Action
-        in: query
-        required: true
-        schema:
-          type: string
-          enum:
-          - DeleteCacheCluster
-      - name: Version
-        in: query
-        required: true
-        schema:
-          type: string
-          default: '2015-02-02'
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              required:
-              - CacheClusterId
-              properties:
-                CacheClusterId:
-                  type: string
-                  description: The cluster identifier for the cluster to be deleted.
-                FinalSnapshotIdentifier:
-                  type: string
-                  description: The user-supplied name of a final cluster snapshot.
-            examples:
-              deleteCacheClusterRequestExample:
-                summary: Default deleteCacheCluster request
-                x-microcks-default: true
-                value:
-                  CacheClusterId: example-id-12345
-                  FinalSnapshotIdentifier: example
-      responses:
-        '200':
-          description: Successful response with the deleted cache cluster details.
-        '404':
-          description: Cache cluster not found.
       tags:
-      - '#DeleteCacheCluster'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-  /#CreateReplicationGroup:
-    post:
-      operationId: createReplicationGroup
-      summary: Amazon ElastiCache Create Replication Group
-      description: Creates a Redis replication group with cluster mode disabled or cluster mode enabled.
-      parameters:
-      - name: Action
-        in: query
-        required: true
-        schema:
-          type: string
-          enum:
-          - CreateReplicationGroup
-      - name: Version
-        in: query
-        required: true
-        schema:
-          type: string
-          default: '2015-02-02'
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              required:
-              - ReplicationGroupId
-              - ReplicationGroupDescription
-              properties:
-                ReplicationGroupId:
-                  type: string
-                  description: The replication group identifier.
-                ReplicationGroupDescription:
-                  type: string
-                  description: A user-created description for the replication group.
-                PrimaryClusterId:
-                  type: string
-                  description: The identifier of the cluster that serves as the primary for this replication group.
-                AutomaticFailoverEnabled:
-                  type: boolean
-                  description: Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.
-                NumCacheClusters:
-                  type: integer
-                  description: The number of clusters this replication group initially has.
-                CacheNodeType:
-                  type: string
-                  description: The compute and memory capacity of the nodes in the node group.
-                Engine:
-                  type: string
-                  description: The name of the cache engine to be used for the clusters in this replication group.
-                  default: redis
-                EngineVersion:
-                  type: string
-                  description: The version number of the cache engine.
-                CacheSubnetGroupName:
-                  type: string
-                  description: The name of the cache subnet group.
-                SecurityGroupIds:
-                  type: array
-                  items:
-                    type: string
-                  description: One or more Amazon VPC security groups associated with this replication group.
-            examples:
-              createReplicationGroupRequestExample:
-                summary: Default createReplicationGroup request
-                x-microcks-default: true
-                value:
-                  ReplicationGroupId: example-id-12345
-                  ReplicationGroupDescription: Example description
-                  PrimaryClusterId: example-id-12345
-                  AutomaticFailoverEnabled: true
-                  NumCacheClusters: 1
-      responses:
-        '200':
-          description: Successful response with the created replication group details.
-        '400':
-          description: Bad request error.
-      tags:
-      - '#CreateReplicationGroup'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-  /#DescribeReplicationGroups:
-    get:
-      operationId: describeReplicationGroups
-      summary: Amazon ElastiCache Describe Replication Groups
-      description: Returns information about a particular replication group or all replication groups.
-      parameters:
-      - name: Action
-        in: query
-        required: true
-        schema:
-          type: string
-          enum:
-          - DescribeReplicationGroups
-      - name: Version
-        in: query
-        required: true
-        schema:
-          type: string
-          default: '2015-02-02'
-      - name: ReplicationGroupId
-        in: query
-        schema:
-          type: string
-        description: The identifier for the replication group to describe.
-      - name: MaxRecords
-        in: query
-        schema:
-          type: integer
-        description: The maximum number of records to include in the response.
-      - name: Marker
-        in: query
-        schema:
-          type: string
-        description: An optional marker returned from a prior request.
-      responses:
-        '200':
-          description: Successful response with replication group details.
-        '404':
-          description: Replication group not found.
-      tags:
-      - '#DescribeReplicationGroups'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+      - Amazon ElastiCache API
 components:
   schemas:
-    CreateCacheClusterResult:
-      type: object
-      properties:
-        CacheCluster:
-          $ref: '#/components/schemas/CacheCluster'
     DescribeCacheClustersResult:
       type: object
       properties:
@@ -363,6 +189,11 @@ components:
             $ref: '#/components/schemas/CacheCluster'
         Marker:
           type: string
+    CreateCacheClusterResult:
+      type: object
+      properties:
+        CacheCluster:
+          $ref: '#/components/schemas/CacheCluster'
     CacheCluster:
       type: object
       properties:
@@ -442,7 +273,3 @@ components:
       name: Authorization
       in: header
       description: AWS Signature Version 4 authentication.
-tags:
-- name: '#CreateReplicationGroup'
-- name: '#DeleteCacheCluster'
-- name: '#DescribeReplicationGroups'

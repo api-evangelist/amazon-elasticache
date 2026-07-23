@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: 'Amazon ElastiCache Amazon ElastiCache API #CreateReplicationGroup API'
+  description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.
+  version: '2015-02-02'
+  contact:
+    name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://aws.amazon.com/elasticache/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://elasticache.amazonaws.com
+  description: Amazon ElastiCache API endpoint
+tags:
+- name: '#CreateReplicationGroup'
+paths:
+  /#CreateReplicationGroup:
+    post:
+      operationId: createReplicationGroup
+      summary: Amazon ElastiCache Create Replication Group
+      description: Creates a Redis replication group with cluster mode disabled or cluster mode enabled.
+      parameters:
+      - name: Action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CreateReplicationGroup
+      - name: Version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2015-02-02'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - ReplicationGroupId
+              - ReplicationGroupDescription
+              properties:
+                ReplicationGroupId:
+                  type: string
+                  description: The replication group identifier.
+                ReplicationGroupDescription:
+                  type: string
+                  description: A user-created description for the replication group.
+                PrimaryClusterId:
+                  type: string
+                  description: The identifier of the cluster that serves as the primary for this replication group.
+                AutomaticFailoverEnabled:
+                  type: boolean
+                  description: Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.
+                NumCacheClusters:
+                  type: integer
+                  description: The number of clusters this replication group initially has.
+                CacheNodeType:
+                  type: string
+                  description: The compute and memory capacity of the nodes in the node group.
+                Engine:
+                  type: string
+                  description: The name of the cache engine to be used for the clusters in this replication group.
+                  default: redis
+                EngineVersion:
+                  type: string
+                  description: The version number of the cache engine.
+                CacheSubnetGroupName:
+                  type: string
+                  description: The name of the cache subnet group.
+                SecurityGroupIds:
+                  type: array
+                  items:
+                    type: string
+                  description: One or more Amazon VPC security groups associated with this replication group.
+            examples:
+              createReplicationGroupRequestExample:
+                summary: Default createReplicationGroup request
+                x-microcks-default: true
+                value:
+                  ReplicationGroupId: example-id-12345
+                  ReplicationGroupDescription: Example description
+                  PrimaryClusterId: example-id-12345
+                  AutomaticFailoverEnabled: true
+                  NumCacheClusters: 1
+      responses:
+        '200':
+          description: Successful response with the created replication group details.
+        '400':
+          description: Bad request error.
+      tags:
+      - '#CreateReplicationGroup'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4 authentication.
