@@ -3,6 +3,19 @@ description: >-
   Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached. ElastiCache makes it
   easy to deploy, operate, and scale popular open-source compatible in-memory data stores, improving the performance of
   web applications.
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 url: https://aws.amazon.com/elasticache/
 created: '2024-01-15'
@@ -18,38 +31,122 @@ tags:
   - Memcached
   - Redis
 apis:
-  - name: Amazon ElastiCache API
-    description: >-
-      API for managing Amazon ElastiCache clusters, replication groups, parameter groups, and related caching
-      infrastructure resources.
-    humanURL: https://aws.amazon.com/elasticache/
-    baseURL: https://elasticache.amazonaws.com
-    tags:
-      - Caching
-      - Database
-      - In-Memory
-      - Redis
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/
-      - type: OpenAPI
-        url: openapi/amazon-elasticache-openapi.yml
-      - type: APIReference
-        url: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/
-      - type: GettingStarted
-        url: https://aws.amazon.com/elasticache/getting-started/
-      - type: Pricing
-        url: https://aws.amazon.com/elasticache/pricing/
-      - type: FAQ
-        url: https://aws.amazon.com/elasticache/faqs/
-      - type: JSONSchema
-        url: json-schema/amazon-elasticache-cache-cluster-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-elasticache-cachecluster-schema.json
-      - type: JSONSchema
-        url: json-schema/amazon-elasticache-create-cache-cluster-result-schema.json
-      - type: JSONLD
-        url: json-ld/amazon-elasticache-context.jsonld
+- aid: amazon-elasticache:amazon-elasticache-amazon-elasticache-api-api
+  name: Amazon ElastiCache Amazon ElastiCache API API
+  description: >-
+    The Amazon ElastiCache API API from Amazon ElastiCache — 1 operation(s) for amazon elasticache api.
+  humanURL: https://aws.amazon.com/elasticache/
+  baseURL: https://elasticache.amazonaws.com
+  tags:
+  - Amazon ElastiCache API
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-elasticache-amazon-elasticache-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticache/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticache/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticache/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cache-cluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cachecluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-create-cache-cluster-result-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elasticache-context.jsonld
+- aid: amazon-elasticache:amazon-elasticache-createreplicationgroup-api
+  name: 'Amazon ElastiCache #CreateReplicationGroup API'
+  description: >-
+    The #CreateReplicationGroup API from Amazon ElastiCache — 1 operation(s) for #createreplicationgroup.
+  humanURL: https://aws.amazon.com/elasticache/
+  baseURL: https://elasticache.amazonaws.com
+  tags:
+  - '#CreateReplicationGroup'
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-elasticache-createreplicationgroup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticache/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticache/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticache/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cache-cluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cachecluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-create-cache-cluster-result-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elasticache-context.jsonld
+- aid: amazon-elasticache:amazon-elasticache-deletecachecluster-api
+  name: 'Amazon ElastiCache #DeleteCacheCluster API'
+  description: >-
+    The #DeleteCacheCluster API from Amazon ElastiCache — 1 operation(s) for #deletecachecluster.
+  humanURL: https://aws.amazon.com/elasticache/
+  baseURL: https://elasticache.amazonaws.com
+  tags:
+  - '#DeleteCacheCluster'
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-elasticache-deletecachecluster-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticache/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticache/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticache/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cache-cluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cachecluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-create-cache-cluster-result-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elasticache-context.jsonld
+- aid: amazon-elasticache:amazon-elasticache-describereplicationgroups-api
+  name: 'Amazon ElastiCache #DescribeReplicationGroups API'
+  description: >-
+    The #DescribeReplicationGroups API from Amazon ElastiCache — 1 operation(s) for #describereplicationgroups.
+  humanURL: https://aws.amazon.com/elasticache/
+  baseURL: https://elasticache.amazonaws.com
+  tags:
+  - '#DescribeReplicationGroups'
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-elasticache-describereplicationgroups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/
+  - type: GettingStarted
+    url: https://aws.amazon.com/elasticache/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/elasticache/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/elasticache/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cache-cluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-cachecluster-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-elasticache-create-cache-cluster-result-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-elasticache-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-elasticache-agentic-access.yml
