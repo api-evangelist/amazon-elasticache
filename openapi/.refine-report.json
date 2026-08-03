@@ -1,0 +1,20 @@
+{
+  "provider": "amazon-elasticache",
+  "sources": [
+    "amazon-elasticache-amazon-elasticache-api-api-openapi.yml",
+    "amazon-elasticache-createreplicationgroup-api-openapi.yml",
+    "amazon-elasticache-deletecachecluster-api-openapi.yml",
+    "amazon-elasticache-describereplicationgroups-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-elasticache-amazon-elasticache-api-api-openapi.yml",
+    "amazon-elasticache-createreplicationgroup-api-openapi.yml",
+    "amazon-elasticache-deletecachecluster-api-openapi.yml",
+    "amazon-elasticache-describereplicationgroups-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
