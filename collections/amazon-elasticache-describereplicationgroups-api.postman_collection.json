@@ -1,0 +1,195 @@
+{
+  "item": [
+    {
+      "id": "3d7557d0-f1e9-436f-9a51-274448f1c12a",
+      "name": "#DescribeReplicationGroups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37219717-0914-42a7-b5bb-7eb0be088be7",
+          "name": "Amazon ElastiCache Describe Replication Groups",
+          "request": {
+            "name": "Amazon ElastiCache Describe Replication Groups",
+            "description": {
+              "content": "Returns information about a particular replication group or all replication groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "hash": "DescribeReplicationGroups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2015-02-02",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ReplicationGroupId",
+                  "value": "<string>",
+                  "description": "The identifier for the replication group to describe."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "<integer>",
+                  "description": "The maximum number of records to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "Marker",
+                  "value": "<string>",
+                  "description": "An optional marker returned from a prior request."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6333106f-a47f-4a4a-99fe-af1ea13cb8c5",
+              "name": "Successful response with replication group details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "DescribeReplicationGroups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "key": "ReplicationGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9bcc86f-a72e-4a7c-891e-0e4ad346b737",
+              "name": "Replication group not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "DescribeReplicationGroups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "key": "ReplicationGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://elasticache.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "90347819-8b2f-4a79-8171-e39da411ada0",
+    "name": "Amazon ElastiCache Amazon ElastiCache API #DescribeReplicationGroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

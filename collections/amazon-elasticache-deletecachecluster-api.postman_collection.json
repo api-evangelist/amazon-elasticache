@@ -1,0 +1,220 @@
+{
+  "item": [
+    {
+      "id": "4851d2b9-fc11-43b4-9a5a-648ceb3923d6",
+      "name": "#DeleteCacheCluster",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79e91b3f-4879-448b-8fae-62ba1b3b9ac2",
+          "name": "Amazon ElastiCache Delete Cache Cluster",
+          "request": {
+            "name": "Amazon ElastiCache Delete Cache Cluster",
+            "description": {
+              "content": "Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "hash": "DeleteCacheCluster",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2015-02-02",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "CacheClusterId",
+                  "value": "<string>",
+                  "description": "(Required) The cluster identifier for the cluster to be deleted."
+                },
+                {
+                  "disabled": false,
+                  "key": "FinalSnapshotIdentifier",
+                  "value": "<string>",
+                  "description": "The user-supplied name of a final cluster snapshot."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f70479c1-4d5e-4135-b634-6d64ec51e062",
+              "name": "Successful response with the deleted cache cluster details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "DeleteCacheCluster",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The cluster identifier for the cluster to be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "CacheClusterId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The user-supplied name of a final cluster snapshot.",
+                        "type": "text/plain"
+                      },
+                      "key": "FinalSnapshotIdentifier",
+                      "value": "example"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4e3b43b-7cfb-464c-a7da-bd95a5527849",
+              "name": "Cache cluster not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "DeleteCacheCluster",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The cluster identifier for the cluster to be deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "CacheClusterId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The user-supplied name of a final cluster snapshot.",
+                        "type": "text/plain"
+                      },
+                      "key": "FinalSnapshotIdentifier",
+                      "value": "example"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://elasticache.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4cb0ffd2-e605-4a54-9655-d1a7643994d0",
+    "name": "Amazon ElastiCache Amazon ElastiCache API #DeleteCacheCluster API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

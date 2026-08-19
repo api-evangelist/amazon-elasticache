@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon ElastiCache Amazon ElastiCache API #DescribeReplicationGroups API",
+    "version": "2015-02-02"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "#DescribeReplicationGroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon ElastiCache Describe Replication Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://elasticache.amazonaws.com/#DescribeReplicationGroups",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ReplicationGroupId",
+                "value": "",
+                "type": "query",
+                "description": "The identifier for the replication group to describe."
+              },
+              {
+                "name": "MaxRecords",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of records to include in the response."
+              },
+              {
+                "name": "Marker",
+                "value": "",
+                "type": "query",
+                "description": "An optional marker returned from a prior request."
+              }
+            ]
+          },
+          "docs": "Returns information about a particular replication group or all replication groups."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

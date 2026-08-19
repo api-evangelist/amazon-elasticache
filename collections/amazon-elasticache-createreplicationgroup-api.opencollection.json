@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon ElastiCache Amazon ElastiCache API #CreateReplicationGroup API",
+    "version": "2015-02-02"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "#CreateReplicationGroup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon ElastiCache Create Replication Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticache.amazonaws.com/#CreateReplicationGroup",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "ReplicationGroupId",
+                  "value": ""
+                },
+                {
+                  "name": "ReplicationGroupDescription",
+                  "value": ""
+                },
+                {
+                  "name": "PrimaryClusterId",
+                  "value": ""
+                },
+                {
+                  "name": "AutomaticFailoverEnabled",
+                  "value": ""
+                },
+                {
+                  "name": "NumCacheClusters",
+                  "value": ""
+                },
+                {
+                  "name": "CacheNodeType",
+                  "value": ""
+                },
+                {
+                  "name": "Engine",
+                  "value": ""
+                },
+                {
+                  "name": "EngineVersion",
+                  "value": ""
+                },
+                {
+                  "name": "CacheSubnetGroupName",
+                  "value": ""
+                },
+                {
+                  "name": "SecurityGroupIds",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a Redis replication group with cluster mode disabled or cluster mode enabled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

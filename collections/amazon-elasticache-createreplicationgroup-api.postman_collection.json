@@ -1,0 +1,328 @@
+{
+  "item": [
+    {
+      "id": "c5725c2b-23be-4dd1-80d4-bfa8f3ab0c32",
+      "name": "#CreateReplicationGroup",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ceba331a-c014-4141-8c65-6c240ad5bfd5",
+          "name": "Amazon ElastiCache Create Replication Group",
+          "request": {
+            "name": "Amazon ElastiCache Create Replication Group",
+            "description": {
+              "content": "Creates a Redis replication group with cluster mode disabled or cluster mode enabled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "hash": "CreateReplicationGroup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2015-02-02",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "ReplicationGroupId",
+                  "value": "<string>",
+                  "description": "(Required) The replication group identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "ReplicationGroupDescription",
+                  "value": "<string>",
+                  "description": "(Required) A user-created description for the replication group."
+                },
+                {
+                  "disabled": false,
+                  "key": "PrimaryClusterId",
+                  "value": "<string>",
+                  "description": "The identifier of the cluster that serves as the primary for this replication group."
+                },
+                {
+                  "disabled": false,
+                  "key": "AutomaticFailoverEnabled",
+                  "value": "<boolean>",
+                  "description": "Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails."
+                },
+                {
+                  "disabled": false,
+                  "key": "NumCacheClusters",
+                  "value": "<integer>",
+                  "description": "The number of clusters this replication group initially has."
+                },
+                {
+                  "disabled": false,
+                  "key": "CacheNodeType",
+                  "value": "<string>",
+                  "description": "The compute and memory capacity of the nodes in the node group."
+                },
+                {
+                  "disabled": false,
+                  "key": "Engine",
+                  "value": "redis",
+                  "description": "The name of the cache engine to be used for the clusters in this replication group."
+                },
+                {
+                  "disabled": false,
+                  "key": "EngineVersion",
+                  "value": "<string>",
+                  "description": "The version number of the cache engine."
+                },
+                {
+                  "disabled": false,
+                  "key": "CacheSubnetGroupName",
+                  "value": "<string>",
+                  "description": "The name of the cache subnet group."
+                },
+                {
+                  "disabled": false,
+                  "key": "SecurityGroupIds",
+                  "value": "<string>",
+                  "description": "One or more Amazon VPC security groups associated with this replication group."
+                },
+                {
+                  "disabled": false,
+                  "key": "SecurityGroupIds",
+                  "value": "<string>",
+                  "description": "One or more Amazon VPC security groups associated with this replication group."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "961575fa-0d04-45da-baf8-420c3186e0c7",
+              "name": "Successful response with the created replication group details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "CreateReplicationGroup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The replication group identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "ReplicationGroupId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A user-created description for the replication group.",
+                        "type": "text/plain"
+                      },
+                      "key": "ReplicationGroupDescription",
+                      "value": "Example description"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The identifier of the cluster that serves as the primary for this replication group.",
+                        "type": "text/plain"
+                      },
+                      "key": "PrimaryClusterId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.",
+                        "type": "text/plain"
+                      },
+                      "key": "AutomaticFailoverEnabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of clusters this replication group initially has.",
+                        "type": "text/plain"
+                      },
+                      "key": "NumCacheClusters",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "218a0827-c631-4561-a990-12df9fa02220",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "hash": "CreateReplicationGroup",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The replication group identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "ReplicationGroupId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A user-created description for the replication group.",
+                        "type": "text/plain"
+                      },
+                      "key": "ReplicationGroupDescription",
+                      "value": "Example description"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The identifier of the cluster that serves as the primary for this replication group.",
+                        "type": "text/plain"
+                      },
+                      "key": "PrimaryClusterId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Specifies whether a read-only replica is automatically promoted to primary if the existing primary fails.",
+                        "type": "text/plain"
+                      },
+                      "key": "AutomaticFailoverEnabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of clusters this replication group initially has.",
+                        "type": "text/plain"
+                      },
+                      "key": "NumCacheClusters",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://elasticache.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "740f2086-fde0-4cff-a62d-32110652d940",
+    "name": "Amazon ElastiCache Amazon ElastiCache API #CreateReplicationGroup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

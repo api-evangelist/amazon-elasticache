@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon ElastiCache Amazon ElastiCache API #DeleteCacheCluster API",
+    "version": "2015-02-02"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "#DeleteCacheCluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon ElastiCache Delete Cache Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://elasticache.amazonaws.com/#DeleteCacheCluster",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "CacheClusterId",
+                  "value": ""
+                },
+                {
+                  "name": "FinalSnapshotIdentifier",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deletes a previously provisioned cluster. A successful response from the web service indicates that the request was received correctly."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

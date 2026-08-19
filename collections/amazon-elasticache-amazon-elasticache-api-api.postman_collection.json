@@ -1,0 +1,533 @@
+{
+  "item": [
+    {
+      "id": "c306de8f-91e6-4431-9f7b-c6e3cb76330c",
+      "name": "Amazon ElastiCache API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c066ee1-0cc0-4647-9ec1-1197406f1f16",
+          "name": "Amazon ElastiCache Create Cache Cluster",
+          "request": {
+            "name": "Amazon ElastiCache Create Cache Cluster",
+            "description": {
+              "content": "Creates a cache cluster. All nodes in the cache cluster run the same protocol-compliant cache engine software, either Memcached or Redis.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2015-02-02",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "CacheClusterId",
+                  "value": "<string>",
+                  "description": "(Required) The node group (shard) identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "Engine",
+                  "value": "<string>",
+                  "description": "The name of the cache engine to be used for this cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "EngineVersion",
+                  "value": "<string>",
+                  "description": "The version number of the cache engine to be used for this cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "CacheNodeType",
+                  "value": "<string>",
+                  "description": "The compute and memory capacity of the nodes in the node group."
+                },
+                {
+                  "disabled": false,
+                  "key": "NumCacheNodes",
+                  "value": "<integer>",
+                  "description": "The initial number of cache nodes that the cluster has."
+                },
+                {
+                  "disabled": false,
+                  "key": "CacheSubnetGroupName",
+                  "value": "<string>",
+                  "description": "The name of the subnet group to be used for the cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "CacheParameterGroupName",
+                  "value": "<string>",
+                  "description": "The name of the parameter group to associate with this cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "SecurityGroupIds",
+                  "value": "<string>",
+                  "description": "One or more VPC security groups associated with the cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "SecurityGroupIds",
+                  "value": "<string>",
+                  "description": "One or more VPC security groups associated with the cluster."
+                },
+                {
+                  "disabled": false,
+                  "key": "PreferredAvailabilityZone",
+                  "value": "<string>",
+                  "description": "The EC2 Availability Zone in which the cluster is created."
+                },
+                {
+                  "disabled": false,
+                  "key": "Port",
+                  "value": "<integer>",
+                  "description": "The port number on which each of the cache nodes accepts connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "AutoMinorVersionUpgrade",
+                  "value": "<boolean>",
+                  "description": "If true, minor engine upgrades will be applied automatically during maintenance windows."
+                },
+                {
+                  "disabled": false,
+                  "key": "SnapshotRetentionLimit",
+                  "value": "<integer>",
+                  "description": "The number of days for which ElastiCache retains automatic snapshots."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cf2c055e-524a-420a-8e1e-ee9b8cebd1a7",
+              "name": "Successful response with the created cache cluster details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The node group (shard) identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "CacheClusterId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the cache engine to be used for this cluster.",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "memcached"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The version number of the cache engine to be used for this cluster.",
+                        "type": "text/plain"
+                      },
+                      "key": "EngineVersion",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The compute and memory capacity of the nodes in the node group.",
+                        "type": "text/plain"
+                      },
+                      "key": "CacheNodeType",
+                      "value": "example"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The initial number of cache nodes that the cluster has.",
+                        "type": "text/plain"
+                      },
+                      "key": "NumCacheNodes",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "28fe366a-b591-425e-a2e4-5e6129e2514e",
+              "name": "Bad request error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The node group (shard) identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "CacheClusterId",
+                      "value": "example-id-12345"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The name of the cache engine to be used for this cluster.",
+                        "type": "text/plain"
+                      },
+                      "key": "Engine",
+                      "value": "memcached"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The version number of the cache engine to be used for this cluster.",
+                        "type": "text/plain"
+                      },
+                      "key": "EngineVersion",
+                      "value": "2025-01-01"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The compute and memory capacity of the nodes in the node group.",
+                        "type": "text/plain"
+                      },
+                      "key": "CacheNodeType",
+                      "value": "example"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The initial number of cache nodes that the cluster has.",
+                        "type": "text/plain"
+                      },
+                      "key": "NumCacheNodes",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f44f57ff-9d3d-4b34-bfdf-6a476314e89a",
+          "name": "Amazon ElastiCache Describe Cache Clusters",
+          "request": {
+            "name": "Amazon ElastiCache Describe Cache Clusters",
+            "description": {
+              "content": "Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "Version",
+                  "value": "2015-02-02",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "CacheClusterId",
+                  "value": "<string>",
+                  "description": "The user-supplied cluster identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "ShowCacheNodeInfo",
+                  "value": "<boolean>",
+                  "description": "If true, lists individual cache node information."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxRecords",
+                  "value": "<integer>",
+                  "description": "The maximum number of records to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "Marker",
+                  "value": "<string>",
+                  "description": "An optional marker returned from a prior request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfc994d4-53a8-4055-829d-708d2dab553c",
+              "name": "Successful response with cache cluster details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ShowCacheNodeInfo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "0f0ef79e-5461-4562-ad5c-2ded337afaf5",
+              "name": "Cache cluster not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "Action",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Version",
+                      "value": "2015-02-02"
+                    },
+                    {
+                      "key": "CacheClusterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ShowCacheNodeInfo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "MaxRecords",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "Marker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://elasticache.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ae851ba1-64b2-496c-8c7a-c2e5a800b61c",
+    "name": "Amazon ElastiCache Amazon ElastiCache API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached for improving the performance of web applications.\n\nContact Support:\n Name: Kin Lane\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}
