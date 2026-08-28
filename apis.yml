@@ -3,6 +3,18 @@ description: >-
   Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached. ElastiCache makes it
   easy to deploy, operate, and scale popular open-source compatible in-memory data stores, improving the performance of
   web applications.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
