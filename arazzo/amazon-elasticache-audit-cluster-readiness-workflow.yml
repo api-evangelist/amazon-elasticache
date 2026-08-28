@@ -15,8 +15,11 @@ info:
     that the ElastiCache API requires.
   version: 1.0.0
 sourceDescriptions:
-- name: elastiCacheApi
-  url: ../openapi/amazon-elasticache-openapi.yml
+- name: amazonElasticacheApiApi
+  url: ../openapi/amazon-elasticache-amazon-elasticache-api-api-openapi.yml
+  type: openapi
+- name: describereplicationgroupsApi
+  url: ../openapi/amazon-elasticache-describereplicationgroups-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: audit-cluster-readiness
