@@ -157,6 +157,8 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-elasticache-context.jsonld
 common:
+- type: Website
+  url: https://amazon.com
 - type: AgenticAccess
   url: agentic-access/amazon-elasticache-agentic-access.yml
 - type: TrustCenter
