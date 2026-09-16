@@ -1,8 +1,7 @@
 name: Amazon ElastiCache
-description: >-
-  Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached. ElastiCache makes it
-  easy to deploy, operate, and scale popular open-source compatible in-memory data stores, improving the performance of
-  web applications.
+description: Amazon ElastiCache is a fully managed in-memory caching service supporting Redis and Memcached.
+  ElastiCache makes it easy to deploy, operate, and scale popular open-source compatible in-memory data
+  stores, improving the performance of web applications.
 deliveryModel:
   model: saas
   open_source: false
@@ -32,22 +31,22 @@ accessModel:
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 url: https://aws.amazon.com/elasticache/
 created: '2024-01-15'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
-  - Amazon Web Services
-  - AWS
-  - Caching
-  - Database
-  - ElastiCache
-  - In-Memory
-  - Memcached
-  - Redis
+- Amazon Web Services
+- AWS
+- Caching
+- Database
+- ElastiCache
+- In-Memory
+- Memcached
+- Redis
 apis:
 - aid: amazon-elasticache:amazon-elasticache-amazon-elasticache-api-api
-  name: Amazon ElastiCache Amazon ElastiCache API API
-  description: >-
-    The Amazon ElastiCache API API from Amazon ElastiCache — 1 operation(s) for amazon elasticache api.
+  name: Amazon ElastiCache Amazon ElastiCache API
+  description: The Amazon ElastiCache API API from Amazon ElastiCache — 1 operation(s) for amazon elasticache
+    api.
   humanURL: https://aws.amazon.com/elasticache/
   baseURL: https://elasticache.amazonaws.com
   tags:
@@ -75,8 +74,7 @@ apis:
     url: json-ld/amazon-elasticache-context.jsonld
 - aid: amazon-elasticache:amazon-elasticache-createreplicationgroup-api
   name: 'Amazon ElastiCache #CreateReplicationGroup API'
-  description: >-
-    The #CreateReplicationGroup API from Amazon ElastiCache — 1 operation(s) for #createreplicationgroup.
+  description: 'The #CreateReplicationGroup API from Amazon ElastiCache — 1 operation(s) for #createreplicationgroup.'
   humanURL: https://aws.amazon.com/elasticache/
   baseURL: https://elasticache.amazonaws.com
   tags:
@@ -104,8 +102,7 @@ apis:
     url: json-ld/amazon-elasticache-context.jsonld
 - aid: amazon-elasticache:amazon-elasticache-deletecachecluster-api
   name: 'Amazon ElastiCache #DeleteCacheCluster API'
-  description: >-
-    The #DeleteCacheCluster API from Amazon ElastiCache — 1 operation(s) for #deletecachecluster.
+  description: 'The #DeleteCacheCluster API from Amazon ElastiCache — 1 operation(s) for #deletecachecluster.'
   humanURL: https://aws.amazon.com/elasticache/
   baseURL: https://elasticache.amazonaws.com
   tags:
@@ -133,8 +130,7 @@ apis:
     url: json-ld/amazon-elasticache-context.jsonld
 - aid: amazon-elasticache:amazon-elasticache-describereplicationgroups-api
   name: 'Amazon ElastiCache #DescribeReplicationGroups API'
-  description: >-
-    The #DescribeReplicationGroups API from Amazon ElastiCache — 1 operation(s) for #describereplicationgroups.
+  description: 'The #DescribeReplicationGroups API from Amazon ElastiCache — 1 operation(s) for #describereplicationgroups.'
   humanURL: https://aws.amazon.com/elasticache/
   baseURL: https://elasticache.amazonaws.com
   tags:
@@ -161,127 +157,127 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-elasticache-context.jsonld
 common:
-  - type: AgenticAccess
-    url: agentic-access/amazon-elasticache-agentic-access.yml
-  - type: TrustCenter
-    url: security/amazon-elasticache-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/amazon-elasticache-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/amazon-elasticache-domain-security.yml
-  - type: Authentication
-    url: authentication/amazon-elasticache-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/amazon-elasticache/overview
-  - type: Arazzo
-    url: arazzo/amazon-elasticache-audit-cluster-readiness-workflow.yml
-    name: Amazon ElastiCache Audit Cluster Readiness
-  - type: Arazzo
-    url: arazzo/amazon-elasticache-cache-cluster-lifecycle-workflow.yml
-    name: Amazon ElastiCache Cache Cluster Lifecycle
-  - type: Arazzo
-    url: arazzo/amazon-elasticache-clone-cluster-config-workflow.yml
-    name: Amazon ElastiCache Clone Cluster Config
-  - type: Arazzo
-    url: arazzo/amazon-elasticache-decommission-cache-cluster-workflow.yml
-    name: Amazon ElastiCache Decommission Cache Cluster
-  - type: Arazzo
-    url: arazzo/amazon-elasticache-provision-cache-cluster-workflow.yml
-    name: Amazon ElastiCache Provision Cache Cluster
-  - type: Arazzo
-    url: arazzo/amazon-elasticache-provision-replication-group-workflow.yml
-    name: Amazon ElastiCache Provision Replication Group
-  - type: Arazzo
-    url: arazzo/amazon-elasticache-replicate-existing-cluster-workflow.yml
-    name: Amazon ElastiCache Replicate Existing Cluster
-  - type: Portal
-    url: https://aws.amazon.com/
-  - type: DeveloperPortal
-    url: https://aws.amazon.com/elasticache/
-  - type: Documentation
-    url: https://docs.aws.amazon.com/elasticache/
-  - type: Blog
-    url: https://aws.amazon.com/blogs/
-  - type: GitHubOrganization
-    url: https://github.com/aws
-  - type: Console
-    url: https://console.aws.amazon.com/elasticache/
-  - type: Signup
-    url: https://portal.aws.amazon.com/billing/signup
-  - type: Login
-    url: https://signin.aws.amazon.com/
-  - type: StatusPage
-    url: https://health.aws.amazon.com/health/status
-  - type: Support
-    url: https://aws.amazon.com/support/
-  - type: FAQ
-    url: https://aws.amazon.com/elasticache/faqs/
-  - type: TermsOfService
-    url: https://aws.amazon.com/service-terms/
-  - type: PrivacyPolicy
-    url: https://aws.amazon.com/privacy/
-  - type: Compliance
-    url: https://aws.amazon.com/compliance/
-  - type: Security
-    url: https://aws.amazon.com/security/
-  - type: YouTube
-    url: https://www.youtube.com/user/AmazonWebServices
-  - type: StackOverflow
-    url: https://stackoverflow.com/questions/tagged/elasticache
-  - type: KnowledgeCenter
-    url: https://repost.aws/knowledge-center
-  - type: Contact
-    url: https://aws.amazon.com/contact-us/
-  - type: SpectralRules
-    url: rules/amazon-elasticache-spectral-rules.yml
-  - type: Vocabulary
-    url: vocabulary/amazon-elasticache-vocabulary.yaml
-  - type: Features
-    data:
-      - name: Redis Support
-        description: Fully managed Redis with replication, clustering, and persistence
-      - name: Memcached Support
-        description: Fully managed Memcached for simple distributed caching
-      - name: Multi-AZ Replication
-        description: Automatic failover with Multi-AZ replication groups
-      - name: Encryption
-        description: Encryption at-rest and in-transit for compliance requirements
-      - name: Automatic Backups
-        description: Scheduled automatic backups with point-in-time recovery
-  - type: UseCases
-    data:
-      - name: Session Management
-        description: Store and manage user session data for web applications
-      - name: Database Query Caching
-        description: Cache expensive database queries to reduce latency
-      - name: Real-Time Analytics
-        description: Process and cache real-time data streams for analytics dashboards
-      - name: Leaderboards and Gaming
-        description: Build real-time leaderboards and gaming backends with Redis sorted sets
-  - type: Integrations
-    data:
-      - name: Amazon EC2
-        description: Connect ElastiCache clusters to EC2-hosted applications
-      - name: Amazon RDS
-        description: Cache RDS query results to reduce database load
-      - name: Amazon Lambda
-        description: Access ElastiCache from serverless Lambda functions
-      - name: Amazon EKS
-        description: Use ElastiCache as shared cache for Kubernetes workloads
-  - type: Integrations
-    url: https://aws.amazon.com/marketplace
+- type: AgenticAccess
+  url: agentic-access/amazon-elasticache-agentic-access.yml
+- type: TrustCenter
+  url: security/amazon-elasticache-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/amazon-elasticache-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amazon-elasticache-domain-security.yml
+- type: Authentication
+  url: authentication/amazon-elasticache-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/amazon-elasticache/overview
+- type: Arazzo
+  url: arazzo/amazon-elasticache-audit-cluster-readiness-workflow.yml
+  name: Amazon ElastiCache Audit Cluster Readiness
+- type: Arazzo
+  url: arazzo/amazon-elasticache-cache-cluster-lifecycle-workflow.yml
+  name: Amazon ElastiCache Cache Cluster Lifecycle
+- type: Arazzo
+  url: arazzo/amazon-elasticache-clone-cluster-config-workflow.yml
+  name: Amazon ElastiCache Clone Cluster Config
+- type: Arazzo
+  url: arazzo/amazon-elasticache-decommission-cache-cluster-workflow.yml
+  name: Amazon ElastiCache Decommission Cache Cluster
+- type: Arazzo
+  url: arazzo/amazon-elasticache-provision-cache-cluster-workflow.yml
+  name: Amazon ElastiCache Provision Cache Cluster
+- type: Arazzo
+  url: arazzo/amazon-elasticache-provision-replication-group-workflow.yml
+  name: Amazon ElastiCache Provision Replication Group
+- type: Arazzo
+  url: arazzo/amazon-elasticache-replicate-existing-cluster-workflow.yml
+  name: Amazon ElastiCache Replicate Existing Cluster
+- type: Portal
+  url: https://aws.amazon.com/
+- type: DeveloperPortal
+  url: https://aws.amazon.com/elasticache/
+- type: Documentation
+  url: https://docs.aws.amazon.com/elasticache/
+- type: Blog
+  url: https://aws.amazon.com/blogs/
+- type: GitHubOrganization
+  url: https://github.com/aws
+- type: Console
+  url: https://console.aws.amazon.com/elasticache/
+- type: Signup
+  url: https://portal.aws.amazon.com/billing/signup
+- type: Login
+  url: https://signin.aws.amazon.com/
+- type: StatusPage
+  url: https://health.aws.amazon.com/health/status
+- type: Support
+  url: https://aws.amazon.com/support/
+- type: FAQ
+  url: https://aws.amazon.com/elasticache/faqs/
+- type: TermsOfService
+  url: https://aws.amazon.com/service-terms/
+- type: PrivacyPolicy
+  url: https://aws.amazon.com/privacy/
+- type: Compliance
+  url: https://aws.amazon.com/compliance/
+- type: Security
+  url: https://aws.amazon.com/security/
+- type: YouTube
+  url: https://www.youtube.com/user/AmazonWebServices
+- type: StackOverflow
+  url: https://stackoverflow.com/questions/tagged/elasticache
+- type: KnowledgeCenter
+  url: https://repost.aws/knowledge-center
+- type: Contact
+  url: https://aws.amazon.com/contact-us/
+- type: SpectralRules
+  url: rules/amazon-elasticache-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-elasticache-vocabulary.yaml
+- type: Features
+  data:
+  - name: Redis Support
+    description: Fully managed Redis with replication, clustering, and persistence
+  - name: Memcached Support
+    description: Fully managed Memcached for simple distributed caching
+  - name: Multi-AZ Replication
+    description: Automatic failover with Multi-AZ replication groups
+  - name: Encryption
+    description: Encryption at-rest and in-transit for compliance requirements
+  - name: Automatic Backups
+    description: Scheduled automatic backups with point-in-time recovery
+- type: UseCases
+  data:
+  - name: Session Management
+    description: Store and manage user session data for web applications
+  - name: Database Query Caching
+    description: Cache expensive database queries to reduce latency
+  - name: Real-Time Analytics
+    description: Process and cache real-time data streams for analytics dashboards
+  - name: Leaderboards and Gaming
+    description: Build real-time leaderboards and gaming backends with Redis sorted sets
+- type: Integrations
+  data:
+  - name: Amazon EC2
+    description: Connect ElastiCache clusters to EC2-hosted applications
+  - name: Amazon RDS
+    description: Cache RDS query results to reduce database load
+  - name: Amazon Lambda
+    description: Access ElastiCache from serverless Lambda functions
+  - name: Amazon EKS
+    description: Use ElastiCache as shared cache for Kubernetes workloads
+- type: Integrations
+  url: https://aws.amazon.com/marketplace
 integrations:
-  - name: Sign in
-  - name: Agent Mode
-  - name: Why AWS Marketplace?
-  - name: Get started in AWS Marketplace
-  - name: Industry
-  - name: Resources
-  - name: Become a Channel Partner
-  - name: Sell in AWS Marketplace
-  - name: Manage Your Account
+- name: Sign in
+- name: Agent Mode
+- name: Why AWS Marketplace?
+- name: Get started in AWS Marketplace
+- name: Industry
+- name: Resources
+- name: Become a Channel Partner
+- name: Sell in AWS Marketplace
+- name: Manage Your Account
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-parent: aws
 x-relationship: product
