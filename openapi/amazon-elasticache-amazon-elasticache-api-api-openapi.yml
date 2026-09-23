@@ -180,15 +180,6 @@ paths:
       - Amazon ElastiCache API
 components:
   schemas:
-    DescribeCacheClustersResult:
-      type: object
-      properties:
-        CacheClusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/CacheCluster'
-        Marker:
-          type: string
     CreateCacheClusterResult:
       type: object
       properties:
@@ -267,6 +258,15 @@ components:
         ARN:
           type: string
           description: The ARN of the cache cluster.
+    DescribeCacheClustersResult:
+      type: object
+      properties:
+        CacheClusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/CacheCluster'
+        Marker:
+          type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey

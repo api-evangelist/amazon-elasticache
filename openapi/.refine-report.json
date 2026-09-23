@@ -1,22 +1,29 @@
 {
   "provider": "amazon-elasticache",
   "sources": [
-    "amazon-elasticache-amazon-elasticache-api-api-openapi.yml",
-    "amazon-elasticache-createreplicationgroup-api-openapi.yml",
-    "amazon-elasticache-deletecachecluster-api-openapi.yml",
-    "amazon-elasticache-describereplicationgroups-api-openapi.yml"
+    "_original/amazon-elasticache-openapi.yml"
   ],
   "outputs": [
-    "amazon-elasticache-amazon-elasticache-api-api-openapi.yml",
     "amazon-elasticache-createreplicationgroup-api-openapi.yml",
     "amazon-elasticache-deletecachecluster-api-openapi.yml",
-    "amazon-elasticache-describereplicationgroups-api-openapi.yml"
+    "amazon-elasticache-describereplicationgroups-api-openapi.yml",
+    "amazon-elasticache-amazon-elasticache-api-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-elasticache-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-elasticache-openapi.yml: tagged paths POST / -> Amazon ElastiCache API",
+    "amazon-elasticache-openapi.yml: tagged paths GET / -> Amazon ElastiCache API",
+    "amazon-elasticache-openapi.yml: declared missing tag: Amazon ElastiCache API",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "amazon-elasticache-amazon-elasticache-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-elasticache-createreplicationgroup-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-elasticache-deletecachecluster-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-elasticache-describereplicationgroups-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
