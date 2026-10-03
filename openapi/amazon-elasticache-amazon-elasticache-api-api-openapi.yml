@@ -355,6 +355,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    DescribeCacheClustersResult:
+      type: object
+      properties:
+        CacheClusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/CacheCluster'
+        Marker:
+          type: string
     CacheCluster:
       type: object
       properties:
@@ -433,15 +442,6 @@ components:
       properties:
         CacheCluster:
           $ref: '#/components/schemas/CacheCluster'
-    DescribeCacheClustersResult:
-      type: object
-      properties:
-        CacheClusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/CacheCluster'
-        Marker:
-          type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey
