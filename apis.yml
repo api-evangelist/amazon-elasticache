@@ -73,6 +73,9 @@ apis:
   - type: JSONLD
     url: json-ld/amazon-elasticache-context.jsonld
 common:
+- type: CapabilityMap
+  url: capabilities/amazon-elasticache-capability-edges.yml
+  name: Amazon ElastiCache Business Capability Map
 - type: Website
   url: https://aws.amazon.com/elasticache/
 - type: AgenticAccess
