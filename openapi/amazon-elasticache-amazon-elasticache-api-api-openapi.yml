@@ -355,15 +355,11 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DescribeCacheClustersResult:
+    CreateCacheClusterResult:
       type: object
       properties:
-        CacheClusters:
-          type: array
-          items:
-            $ref: '#/components/schemas/CacheCluster'
-        Marker:
-          type: string
+        CacheCluster:
+          $ref: '#/components/schemas/CacheCluster'
     CacheCluster:
       type: object
       properties:
@@ -437,11 +433,15 @@ components:
         ARN:
           type: string
           description: The ARN of the cache cluster.
-    CreateCacheClusterResult:
+    DescribeCacheClustersResult:
       type: object
       properties:
-        CacheCluster:
-          $ref: '#/components/schemas/CacheCluster'
+        CacheClusters:
+          type: array
+          items:
+            $ref: '#/components/schemas/CacheCluster'
+        Marker:
+          type: string
   securitySchemes:
     aws_sigv4:
       type: apiKey
