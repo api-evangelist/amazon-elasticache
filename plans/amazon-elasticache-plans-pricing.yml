@@ -79,7 +79,7 @@ plans:
 rate_limit_statements:
 - You can purchase up to 300 reserved nodes.
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
