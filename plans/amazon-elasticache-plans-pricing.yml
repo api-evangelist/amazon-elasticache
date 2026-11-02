@@ -1,0 +1,162 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://aws.amazon.com/elasticache/pricing/
+sources:
+- https://aws.amazon.com/elasticache/pricing/
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T141238
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: true
+note: 'Most node-hour price tables are dynamic placeholders that did not render; numeric prices captured
+  come from stated rates and pricing examples. Legacy free tier: 750 hours of cache.t3.micro free for
+  12 months; 15 GiB free data transfer out/month. Extended Support priced at 80% premium (Y1-2) and 160%
+  (Y3); synchronous durability writes at 18% premium; reserved nodes discount up to 48.2%/52%/55%.'
+plan_count: 9
+currency: USD
+plans:
+- name: ElastiCache Serverless for Valkey - data storage (US East N. Virginia, from example)
+  price_text: $0.084/GB-hour
+  price: 0.084
+  currency: USD
+  period: per-use
+  unit: GB-hour
+- name: ElastiCache Serverless for Valkey - ECPUs (from example)
+  price_text: $0.0023 / million ECPUs
+  price: 0.0023
+  currency: USD
+  period: per-use
+  unit: million ECPUs
+- name: ElastiCache Serverless for Memcached - data storage (from example)
+  price_text: $0.125 /GB-hour
+  price: 0.125
+  currency: USD
+  period: per-use
+  unit: GB-hour
+- name: ElastiCache Serverless for Memcached - ECPUs (from example)
+  price_text: $0.00340 / million ECPUs
+  price: 0.0034
+  currency: USD
+  period: per-use
+  unit: million ECPUs
+- name: Backup and restore storage
+  price_text: $0.085 per GiB per month
+  price: 0.085
+  currency: USD
+  period: month
+  unit: GiB
+- name: Data transfer within Region (standard AWS rate)
+  price_text: $0.01 per GB
+  price: 0.01
+  currency: USD
+  period: per-use
+  unit: GB
+- name: ElastiCache for Valkey starting price
+  price_text: starts at $6/month
+  price: 6
+  currency: USD
+  period: month
+- name: Free Tier credits (sign-up after July 15, 2025)
+  price_text: $100 in credits
+  price: 100
+  currency: USD
+  period: none
+  unit: credits
+  included_quota: up to an additional $100 in credits for activating foundational AWS services
+- name: On-demand node example cache.m5.large (US East Ohio)
+  price_text: $0.1560
+  price: 0.156
+  currency: USD
+  period: per-use
+  unit: instance hour
+rate_limit_statements:
+- You can purchase up to 300 reserved nodes.
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - subscription
+  units:
+  - compute
+  - credit
+  - data
+  plans:
+  - name: ElastiCache Serverless for Valkey - data storage (US East N. Virginia, from exam
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: ElastiCache Serverless for Valkey - ECPUs (from example)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: ElastiCache Serverless for Memcached - data storage (from example)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: ElastiCache Serverless for Memcached - ECPUs (from example)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Backup and restore storage
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - month
+  - name: Data transfer within Region (standard AWS rate)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: ElastiCache for Valkey starting price
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Free Tier credits (sign-up after July 15, 2025)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - none
+  - name: On-demand node example cache.m5.large (US East Ohio)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
